@@ -294,9 +294,9 @@ class Agent:
                     quantity = buy_sell_count_max - abs(last_size)
 
                 if buy_sell_direction == 1 and quantity > 0:
-                    states_buy.append(price)
+                    states_buy.append(t)
                 elif buy_sell_direction == -1 and quantity > 0:
-                    states_sell.append(price)
+                    states_sell.append(t)
 
                 amount = buy_sell_direction * quantity
 
@@ -342,9 +342,10 @@ class Agent:
             state = next_state
             roe = ((wallet_balance - initial_money) / initial_money) * 100
             if print_flg:
-                print('\nroe: %s%, wallet_balance:%s, initial_money:%s' % (round(roe, 2), wallet_balance, initial_money))
-        return round(roe, 2)
+                print('\nROE: %s, wallet_balance:%s, initial_money:%s, buy %s, sell %s, count %s' %
+                      (round(roe, 2), wallet_balance, initial_money, len(states_buy), len(states_sell), len(states_buy) + len(states_sell)))
 
+        print('plot')
         plt.figure(figsize = (20, 10))
         plt.plot(close, label = 'true close', c = 'g')
         plt.plot(
