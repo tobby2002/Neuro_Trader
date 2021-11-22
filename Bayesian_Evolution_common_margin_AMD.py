@@ -281,6 +281,10 @@ class Agent:
                 last_entry_price = positions[-1][3] if positions else 0
                 last_realized_pnl_total = assets[-1][7] if assets else 0
 
+                # futures
+                time = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+                symbol = 'BTCUSDT'
+                price = close[t]
                 buy_sell_direction = 1 if action == 1 else -1
 
                 buy_norm_minmax = minmax_scale(buys, feature_range=(0, 1), axis=0, copy=True)
@@ -289,11 +293,10 @@ class Agent:
                 if (abs(last_size + buy_sell_direction * quantity)) > buy_sell_count_max:
                     quantity = buy_sell_count_max - abs(last_size)
 
-                # futures
-                time = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-                symbol = 'BTCUSDT'
-                price = close[t]
-                buy_sell_direction = 1 if action == 1 else -1
+                if buy_sell_direction == 1 and quantity > 0:
+                    states_buy.append(price)
+                elif buy_sell_direction == -1 and quantity > 0:
+                    states_sell.append(price)
 
                 amount = buy_sell_direction * quantity
 
@@ -339,8 +342,8 @@ class Agent:
             state = next_state
             roe = ((wallet_balance - initial_money) / initial_money) * 100
             if print_flg:
-                print('\nroe: %s, wallet_balance:%s, initial_money:%s' % (roe, wallet_balance, initial_money))
-        return ((wallet_balance - initial_money) / initial_money) * 100
+                print('\nroe: %s%, wallet_balance:%s, initial_money:%s' % (round(roe, 2), wallet_balance, initial_money))
+        return round(roe, 2)
 
         plt.figure(figsize = (20, 10))
         plt.plot(close, label = 'true close', c = 'g')
