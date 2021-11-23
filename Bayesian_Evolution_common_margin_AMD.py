@@ -146,15 +146,22 @@ class Agent:
         return np.argmax(decision[0]), int(buy[0])
 
     def get_reward(self, weights):
+        self.model.weights = weights
+        return self.margin('get_reward')
+        #
+        # return ((initial_money - starting_money) / starting_money) * 100
+
+
+    def margin(self, flg):
         initial_money = self.initial_money
         starting_money = initial_money
-        self.model.weights = weights
         state = get_state(close, 0, self.window_size + 1)
         inventory = []
         quantity = 0
 
-
         # futures
+        acts = []
+        charts = []
         trades = []
         positions = []
         orders = []
@@ -167,195 +174,134 @@ class Agent:
         buy_sell_count_max = 5
         buys = [-100, 100]
 
+        price = 0
+        price_ex = 0
+        dif_price = 0
+        dif_percent = 0
+        states_buy = []
+        states_sell = []
+
         for t in range(0, l, self.skip):
             action, buy = self.act(state)
             next_state = get_state(close, t + 1, self.window_size + 1)
+
             buys.append(buy)
 
+            # act
+            act = [t, action, buy]
+            # acts.append(act)
+            price = close[t]
+            if t > 0:
+                price_ex = close[t - 1]
+                dif_price = price - price_ex
+                dif_percent = round(dif_price/100, 4)
+
+            # chart
+            chart = [price, price_ex, dif_price, dif_percent]
+            # charts.append(chart)
+
             if print_flg:
-                # print('no.%s : action: %s: self.trend[t]:%s, inventory:%s' % (t, action, self.trend[t], inventory))
-                print('no.%s : action: %s: self.trend[t]:%s,' % (t, action, close[t]))
+                print(act)
 
             if action == 1 or action == 2:
-                last_size = positions[-1][2] if positions else 0
-                last_entry_price = positions[-1][3] if positions else 0
-                last_realized_pnl_total = assets[-1][7] if assets else 0
+                last_avg_price = positions[-1][0] if positions else 0
+                last_hold_size = positions[-1][1] if positions else 0
 
-
-                buy_sell_direction = 1 if action == 1 else -1
+                di = 1 if action == 1 else -1
+                buy_sell = 'buy' if action == 1 else 'sell'
 
                 buy_norm_minmax = minmax_scale(buys, feature_range=(0, 1), axis=0, copy=True)
                 quantity = round(buy_norm_minmax[-1] * buy_sell_count_max, 4)
-
-                if (abs(last_size + buy_sell_direction * quantity)) > buy_sell_count_max:
-                    quantity = buy_sell_count_max - abs(last_size)
+                quantity_limit = quantity
+                if (abs(last_hold_size + di * quantity)) > buy_sell_count_max:
+                    quantity_limit = buy_sell_count_max - abs(last_hold_size)
 
                 # futures
-                time = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-                symbol = 'BTCUSDT'
-                price = close[t]
-                buy_sell_direction = 1 if action == 1 else -1
+                # time = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+                # symbol = 'BTCUSDT'
+                transac_size = di * quantity_limit
+                fee = -abs(transac_size * fee_rate * price * 1 / 100)
 
-                amount = buy_sell_direction * quantity
-
-                fee = -abs(amount * fee_rate * price * 1 / 100)
-
-                order_price = price
-                buy_sell = 'buy' if action == 1 else 'sell'
                 # order
-                order = [time, symbol, 'market', buy_sell, order_price, amount]
+                order = [buy_sell, price, transac_size]
+                # order = [time, symbol, 'market', buy_sell, price, transac_size]
                 orders.append(order)
 
-                size = last_size + amount
-                entry_price = abs((last_entry_price * last_size + order_price * amount) / size) if size else 0
-                mark_price = close[t]
+                hold_size = last_hold_size + transac_size
 
-                pnl = (price - last_entry_price) * last_size if last_entry_price else 0
-                realized_pnl = (last_entry_price - price) * amount \
-                    if last_entry_price != 0 and abs(last_size + amount) <= abs(last_size) else 0
+                realized_pnl = 0
+                if last_hold_size * transac_size > 0:
+                    avg_price = abs((last_avg_price * last_hold_size + price * transac_size) / hold_size) if hold_size else 0
+                    realized_pnl = 0
+                else:
+                    if abs(last_hold_size) == abs(transac_size):
+                        avg_price = 0
+                        realized_pnl = (price - last_avg_price) * last_hold_size
+                    elif abs(last_hold_size) > abs(transac_size):
+                        avg_price = last_avg_price
+                        realized_pnl = (last_avg_price - price) * transac_size
 
-                roe = round((pnl / abs(last_entry_price * last_size)) * 100, 2) if last_entry_price * last_size else 0
+                    elif abs(last_hold_size) < abs(transac_size):
+                        avg_price = price
+                        realized_pnl = (price - last_avg_price) * last_hold_size
+
+                pnl = (price - last_avg_price) * last_hold_size if last_avg_price else 0
+                roe = round((pnl / abs(last_avg_price * last_hold_size)) * 100, 2) if last_avg_price * last_hold_size else 0
                 realized_pnl_total += realized_pnl
 
                 # trade
-                trade = [time, symbol, buy_sell, price, amount, fee, pnl, realized_pnl]
+                trade = [price, transac_size, buy_sell, fee, realized_pnl]
                 trades.append(trade)
 
                 # position
-                position = [time, symbol, size, entry_price, mark_price, pnl, roe]
+                position = [avg_price, hold_size, pnl, roe]
+                positions.clear()
                 positions.append(position)
 
-                # asset
                 fee_total += fee
-                wallet_balance = initial_money + last_realized_pnl_total + fee_total + pnl
-                net_pnl_total = wallet_balance - initial_money
+                wallet_balance = initial_money + realized_pnl_total + fee_total + pnl
+                net_pnl_total = realized_pnl_total + fee_total + pnl
 
-                asset = [time, wallet_balance, initial_money, pnl, roe, fee_total, realized_pnl_total, net_pnl_total]
+                # asset
+                asset = [wallet_balance, initial_money, fee_total, realized_pnl_total, net_pnl_total, (net_pnl_total/initial_money)*100, (net_pnl_total/max(close))*100 ]
                 assets.append(asset)
 
                 if print_flg:
-                    print('day %d: %s %s unit at price %f, \n  order  %s, \n  trade  %s, \n  posi   %s, \n  asset  %s\n'
-                          % (t, buy_sell, round(quantity, 2), price, orders[-1], trades[-1], positions[-1], asset))
-
+                    print('- act    %s \n  chart  %s \n  order  %s \n  trade  %s \n  posi   %s \n  asset  %s\n'
+                          % (act, chart, order, trade, position, asset))
 
             state = next_state
-        return ((wallet_balance - initial_money) / initial_money) * 100
-        #
-        # return ((initial_money - starting_money) / starting_money) * 100
+
+        if flg == 'get_reward':
+            return ((net_pnl_total) / initial_money) * 100
+        else:
+            if action == 1 and quantity_limit > 0:
+                states_buy.append(t)
+            elif action == 2 and quantity_limit > 0:
+                states_sell.append(t)
+
+            if print_flg:
+                print('  + roe: %s, wallet_balance:%s, initial_money:%s, buy %s, sell %s, count %s' %
+                      (round(roe, 2), wallet_balance, initial_money, len(states_buy), len(states_sell),
+                       len(states_buy) + len(states_sell)))
+
+            print('plot')
+            plt.figure(figsize=(20, 10))
+            plt.plot(close, label='true close', c='g')
+            plt.plot(
+                close, 'X', label='predict buy', markevery=states_buy, c='b'
+            )
+            plt.plot(
+                close, 'o', label='predict sell', markevery=states_sell, c='r'
+            )
+            plt.legend()
+            plt.show()
 
     def fit(self, iterations, checkpoint):
         self.es.train(iterations, print_every = checkpoint)
 
     def buy(self):
-        initial_money = self.initial_money
-        state = get_state(close, 0, self.window_size + 1)
-        starting_money = initial_money
-        states_sell = []
-        states_buy = []
-        inventory = []
-        quantity = 0
-
-        # futures
-        trades = []
-        positions = []
-        orders = []
-        assets = []
-        fee_total = 0
-        realized_pnl_total = 0
-        print_flg = True
-        fee_rate = 0
-        buy_sell_count_max = 5
-        buys = [-100, 100]
-        roe = 0
-        for t in range(0, l, self.skip):
-            action, buy = self.act(state)
-            next_state = get_state(close, t + 1, self.window_size + 1)
-            buys.append(buy)
-
-            if print_flg:
-                # print('no.%s : action: %s: self.trend[t]:%s, inventory:%s' % (t, action, self.trend[t], inventory))
-                print('no.%s : action: %s: self.trend[t]:%s,' % (t, action, close[t]))
-
-            if action == 1 or action == 2:
-                last_size = positions[-1][2] if positions else 0
-                last_entry_price = positions[-1][3] if positions else 0
-                last_realized_pnl_total = assets[-1][7] if assets else 0
-
-                # futures
-                time = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-                symbol = 'BTCUSDT'
-                price = close[t]
-                buy_sell_direction = 1 if action == 1 else -1
-
-                buy_norm_minmax = minmax_scale(buys, feature_range=(0, 1), axis=0, copy=True)
-                quantity = round(buy_norm_minmax[-1] * buy_sell_count_max, 4)
-
-                if (abs(last_size + buy_sell_direction * quantity)) > buy_sell_count_max:
-                    quantity = buy_sell_count_max - abs(last_size)
-
-                if buy_sell_direction == 1 and quantity > 0:
-                    states_buy.append(t)
-                elif buy_sell_direction == -1 and quantity > 0:
-                    states_sell.append(t)
-
-                amount = buy_sell_direction * quantity
-
-                fee = -abs(amount * fee_rate * price * 1 / 100)
-
-                order_price = price
-                buy_sell = 'buy' if action == 1 else 'sell'
-                # order
-                order = [time, symbol, 'market', buy_sell, order_price, amount]
-                orders.append(order)
-
-                size = last_size + amount
-                entry_price = abs((last_entry_price * last_size + order_price * amount) / size) if size else 0
-                mark_price = close[t]
-
-                pnl = (price - last_entry_price) * last_size if last_entry_price else 0
-                realized_pnl = (last_entry_price - price) * amount \
-                    if last_entry_price != 0 and abs(last_size + amount) <= abs(last_size) else 0
-
-                roe = round((pnl / abs(last_entry_price * last_size)) * 100, 2) if last_entry_price * last_size else 0
-                realized_pnl_total += realized_pnl
-
-                # trade
-                trade = [time, symbol, buy_sell, price, amount, fee, pnl, realized_pnl]
-                trades.append(trade)
-
-                # position
-                position = [time, symbol, size, entry_price, mark_price, pnl, roe]
-                positions.append(position)
-
-                # asset
-                fee_total += fee
-                wallet_balance = initial_money + last_realized_pnl_total + fee_total + pnl
-                net_pnl_total = wallet_balance - initial_money
-
-                asset = [time, wallet_balance, initial_money, pnl, roe, fee_total, realized_pnl_total, net_pnl_total]
-                assets.append(asset)
-
-                if print_flg:
-                    print('day %d: %s %s unit at price %f, \n  order  %s, \n  trade  %s, \n  posi   %s, \n  asset  %s\n'
-                          % (t, buy_sell, round(quantity, 2), price, orders[-1], trades[-1], positions[-1], asset))
-
-            state = next_state
-            roe = ((wallet_balance - initial_money) / initial_money) * 100
-            if print_flg:
-                print('\nROE: %s, wallet_balance:%s, initial_money:%s, buy %s, sell %s, count %s' %
-                      (round(roe, 2), wallet_balance, initial_money, len(states_buy), len(states_sell), len(states_buy) + len(states_sell)))
-
-        print('plot')
-        plt.figure(figsize = (20, 10))
-        plt.plot(close, label = 'true close', c = 'g')
-        plt.plot(
-            close, 'X', label = 'predict buy', markevery = states_buy, c = 'b'
-        )
-        plt.plot(
-            close, 'o', label = 'predict sell', markevery = states_sell, c = 'r'
-        )
-        plt.legend()
-        plt.show()
+        self.margin('')
 
 # def best_agent(
 #     window_size, skip, population_size, sigma, learning_rate, size_network):
