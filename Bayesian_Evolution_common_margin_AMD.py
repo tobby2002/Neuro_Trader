@@ -6,7 +6,8 @@ import seaborn as sns
 import random
 from bayes_opt import BayesianOptimization
 from datetime import datetime
-from sklearn.preprocessing import normalize, minmax_scale
+from sklearn.preprocessing import MinMaxScaler, normalize, minmax_scale
+import pandas_datareader.data as web
 
 sns.set()
 
@@ -28,12 +29,24 @@ end = datetime(2020, 6, 9)
 # df = web.DataReader(company,'yahoo',start=start, end=end)
 # df = web.DataReader('AAPL','yahoo',start=start, end=end)
 # df= pd.read_csv('./dataset/xyz.csv')
-df= pd.read_csv('./AMD.csv')
+# df= pd.read_csv('./AMD.csv')
+
+company = 'AMD'
+df = web.DataReader(company, 'yahoo', start=start, end=end)
+
+# real_trend = df['Close'].tolist()
+parameters = [df['Close'].tolist(), df['Volume'].tolist()]
+scaled_parameters = MinMaxScaler(feature_range=(100, 200)).fit_transform(np.array(parameters).T).T.tolist()
+initial_money = np.max(parameters[0]) * 2
+
 
 close = df.Close.values.tolist()
 window_size = 30
 skip = 5
 l = len(close) - 1
+
+# futures
+fee_rate = 0.04
 
 class Deep_Evolution_Strategy:
 
@@ -169,12 +182,14 @@ class Agent:
         fee_total = 0
         realized_pnl_total = 0
         print_flg = False
+        if flg == 'buy':
+            print_flg = True
         # print_flg = True
-        fee_rate = 0
+        # futures
+        # fee_rate = 0.04
         buy_sell_count_max = 5
         buys = [-100, 100]
 
-        price = 0
         price_ex = 0
         dif_price = 0
         dif_percent = 0
@@ -270,20 +285,21 @@ class Agent:
                     print('- act    %s \n  chart  %s \n  order  %s \n  trade  %s \n  posi   %s \n  asset  %s\n'
                           % (act, chart, order, trade, position, asset))
 
+                if flg == 'buy':
+                    if action == 1 and quantity_limit > 0:
+                        states_buy.append(t)
+                    elif action == 2 and quantity_limit > 0:
+                        states_sell.append(t)
+
             state = next_state
 
         if flg == 'get_reward':
             return ((net_pnl_total) / initial_money) * 100
         else:
-            if action == 1 and quantity_limit > 0:
-                states_buy.append(t)
-            elif action == 2 and quantity_limit > 0:
-                states_sell.append(t)
 
-            if print_flg:
-                print('  + roe: %s, wallet_balance:%s, initial_money:%s, buy %s, sell %s, count %s' %
-                      (round(roe, 2), wallet_balance, initial_money, len(states_buy), len(states_sell),
-                       len(states_buy) + len(states_sell)))
+            print('  + roe: %s, wallet_balance:%s, initial_money:%s, buy %s, sell %s, count %s' %
+                  (round(roe, 2), wallet_balance, initial_money, len(states_buy), len(states_sell),
+                   len(states_buy) + len(states_sell)))
 
             print('plot')
             plt.figure(figsize=(20, 10))
@@ -301,7 +317,7 @@ class Agent:
         self.es.train(iterations, print_every = checkpoint)
 
     def buy(self):
-        self.margin('')
+        self.margin('buy')
 
 # def best_agent(
 #     window_size, skip, population_size, sigma, learning_rate, size_network):
@@ -388,12 +404,14 @@ agent = Agent(population_size = 15,
               sigma = 0.1, 
               learning_rate = 0.03, 
               model = model, 
-              money = 10000, 
-              max_buy = 5, 
+              # money = 10000,
+              money = initial_money,
+              max_buy = 5,
               max_sell = 5, 
               skip = 1, 
               window_size = 30)
-agent.fit(500, 100)
+# agent.fit(500, 100)
+agent.fit(100, 20)
 agent.buy()
 
 
