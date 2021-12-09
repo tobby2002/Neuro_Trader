@@ -1,0 +1,428 @@
+use_file_model:True
+FIT_I&C:150_20
+['SUSHIUPUSDT', 'QNTUSDT', 'REQUSDT', 'AUDUSDT', 'VTHOUSDT', 'BAKEUSDT', 'DENTUSDT', 'CELRUSDT', 'EOSBEARUSDT', 'HCUSDT', 'SYSUSDT', 'CHESSUSDT', 'WANUSDT', 'CELOUSDT', 'USDCUSDT', 'SKLUSDT', 'FIROUSDT', 'BZRXUSDT', 'VIDTUSDT', 'ADAUPUSDT', 'TRBUSDT', 'MFTUSDT', 'GXSUSDT', 'SHIBUSDT', 'MBOXUSDT', 'LINKUSDT', 'ARDRUSDT', 'FIDAUSDT', 'TROYUSDT', 'PORTOUSDT', 'TUSDUSDT', 'SUPERUSDT', 'ROSEUSDT', 'BTCSTUSDT', 'CITYUSDT', 'ONTUSDT', 'SUSHIDOWNUSDT', 'ALPHAUSDT', 'MATICUSDT', 'ADAUSDT', 'FUNUSDT', 'KP3RUSDT', 'SXPDOWNUSDT', 'LITUSDT', 'TRIBEUSDT', 'GTOUSDT', 'STRATUSDT', 'LAZIOUSDT', 'GALAUSDT', 'POLYUSDT', 'DFUSDT', 'DGBUSDT', 'THETAUSDT', 'ONGUSDT', 'UNIUSDT', 'WTCUSDT', 'IOTAUSDT', 'REEFUSDT', 'LTCDOWNUSDT', 'ALCXUSDT', 'OMGUSDT', 'WAXPUSDT', 'ICXUSDT', 'MLNUSDT', 'AGLDUSDT', 'BEAMUSDT', 'FORTHUSDT', 'USDTRUB', 'USDTZAR', 'YFIUSDT', 'PUNDIXUSDT', 'RAYUSDT', 'ZRXUSDT', 'BNXUSDT', 'RENUSDT', 'NUUSDT', 'INJUSDT', 'POWRUSDT', 'CAKEUSDT', 'ADADOWNUSDT', 'EOSUPUSDT', 'UNIDOWNUSDT', 'TVKUSDT', 'XLMUSDT', 'EOSBULLUSDT', 'KSMUSDT', 'XZCUSDT', 'ZILUSDT', 'PONDUSDT', 'MKRUSDT', 'XRPDOWNUSDT', 'XLMUPUSDT', 'ANTUSDT', '1INCHDOWNUSDT', 'USDTNGN', 'LTOUSDT', 'ZENUSDT', 'XMRUSDT', 'TLMUSDT', 'MBLUSDT', 'HBARUSDT', 'VITEUSDT', 'CRVUSDT', 'CVPUSDT', 'ATMUSDT', 'AXSUSDT', 'XRPBEARUSDT', 'USDTTRY', 'ONEUSDT', 'ANKRUSDT', 'USDSBUSDT', 'WNXMUSDT', 'SUSHIUSDT', 'ORNUSDT', 'FTMUSDT', 'BELUSDT', 'AIONUSDT', 'STORJUSDT', 'BEARUSDT', 'HIVEUSDT', 'BTSUSDT', 'CTSIUSDT', 'PLAUSDT', 'IOTXUSDT', 'PAXUSDT', 'BNBBULLUSDT', 'ADXUSDT', 'BCCUSDT', 'ATAUSDT', 'FETUSDT', 'DOCKUSDT', 'USDTUAH', 'PYRUSDT', 'XTZUSDT', 'USDTBRL', 'ETHUPUSDT', 'MASKUSDT', 'AAVEDOWNUSDT', 'TORNUSDT', 'ALGOUSDT', 'GTCUSDT', 'NANOUSDT', 'OXTUSDT', 'BARUSDT', 'HARDUSDT', 'DNTUSDT', 'USDTBIDR', 'FILUSDT', 'ETHBULLUSDT', 'TRUUSDT', 'SRMUSDT', 'GBPUSDT', 'BNBUSDT', 'ILVUSDT', 'TWTUSDT', 'TOMOUSDT', 'COSUSDT', 'DYDXUSDT', 'ASRUSDT', 'DREPUSDT', 'LTCUPUSDT', 'RUNEUSDT', 'CVCUSDT', '1INCHUPUSDT', 'RGTUSDT', 'MITHUSDT', 'DOTUPUSDT', 'UNFIUSDT', 'KEEPUSDT', 'FLMUSDT', 'BCHSVUSDT', 'STRAXUSDT', 'DARUSDT', 'WINGUSDT', 'EOSUSDT', 'CKBUSDT', 'XVGUSDT', 'JSTUSDT', 'FTTUSDT', 'LPTUSDT', 'XRPUSDT', 'STORMUSDT', 'GRTUSDT', 'ALPACAUSDT', 'COCOSUSDT', 'POLSUSDT', 'MOVRUSDT', 'MANAUSDT', 'TRXUSDT', 'LENDUSDT', 'YFIUPUSDT', 'BTCUSDT', 'NEARUSDT', 'XRPUPUSDT', 'MCOUSDT', 'ALICEUSDT', 'AAVEUSDT', 'ACMUSDT', 'CTKUSDT', 'BNTUSDT', 'USDTBKRW', 'BTGUSDT', '1INCHUSDT', 'DASHUSDT', 'CHRUSDT', 'DAIUSDT', 'YFIIUSDT', 'FIOUSDT', 'FISUSDT', 'HNTUSDT', 'MIRUSDT', 'OGNUSDT', 'AAVEUPUSDT', 'BCHABCUSDT', 'ARPAUSDT', 'AVAXUSDT', 'LTCUSDT', 'PHAUSDT', 'COTIUSDT', 'LINKDOWNUSDT', 'FILDOWNUSDT', 'BCHUPUSDT', 'ZECUSDT', 'KEYUSDT', 'USDTIDRT', 'DOTUSDT', 'ENSUSDT', 'REPUSDT', 'AKROUSDT', 'SNXUSDT', 'DUSKUSDT', 'HOTUSDT', 'DOTDOWNUSDT', 'BCHDOWNUSDT', 'YGGUSDT', 'UNIUPUSDT', 'XEMUSDT', 'C98USDT', 'CLVUSDT', 'OMUSDT', 'STXUSDT', 'EOSDOWNUSDT', 'USDTDAI', 'PERLUSDT', 'BALUSDT', 'BANDUSDT', 'ERDUSDT', 'RAREUSDT', 'IRISUSDT', 'RNDRUSDT', 'MDTUSDT', 'CFXUSDT', 'NBSUSDT', 'AUCTIONUSDT', 'LINKUPUSDT', 'RAMPUSDT', 'MINAUSDT', 'NEOUSDT', 'BNBBEARUSDT', 'TRXDOWNUSDT', 'DEXEUSDT', 'DODOUSDT', 'XLMDOWNUSDT', 'NKNUSDT', 'DIAUSDT', 'XECUSDT', 'LINAUSDT', 'IOSTUSDT', 'LRCUSDT', 'QTUMUSDT', 'DCRUSDT', 'RLCUSDT', 'EGLDUSDT', 'BLZUSDT', 'SUSDUSDT', 'NULSUSDT', 'QUICKUSDT', 'BTCUPUSDT', 'TFUELUSDT', 'UTKUSDT', 'AUTOUSDT', 'BICOUSDT', 'BTTUSDT', 'SOLUSDT', 'RIFUSDT', 'ETHUSDT', 'YFIDOWNUSDT', 'USDPUSDT', 'USDTGYEN', 'CHZUSDT', 'SFPUSDT', 'IDEXUSDT', 'MDXUSDT', 'KMDUSDT', 'BNBDOWNUSDT', 'FARMUSDT', 'CTXCUSDT', 'XVSUSDT', 'SXPUSDT', 'RSRUSDT', 'SANTOSUSDT', 'TCTUSDT', 'VGXUSDT', 'USDTBVND', 'UMAUSDT', 'TKOUSDT', 'TRXUPUSDT', 'JASMYUSDT', 'BUSDUSDT', 'BKRWUSDT', 'GHSTUSDT', 'BATUSDT', 'ERNUSDT', 'FORUSDT', 'MTLUSDT', 'ELFUSDT', 'PSGUSDT', 'STPTUSDT', 'PERPUSDT', 'COMPUSDT', 'SCUSDT', 'FRONTUSDT', 'AVAUSDT', 'SXPUPUSDT', 'BTCDOWNUSDT', 'STMXUSDT', 'WAVESUSDT', 'OCEANUSDT', 'RVNUSDT', 'ENJUSDT', 'ATOMUSDT', 'QIUSDT', 'LSKUSDT', 'FILUPUSDT', 'SLPUSDT', 'WRXUSDT', 'AMPUSDT', 'KLAYUSDT', 'WINUSDT', 'XTZUPUSDT', 'KNCUSDT', 'DATAUSDT', 'BONDUSDT', 'PNTUSDT', 'XTZDOWNUSDT', 'VENUSDT', 'GNOUSDT', 'SANDUSDT', 'EPSUSDT', 'KAVAUSDT', 'ETHBEARUSDT', 'OGUSDT', 'MCUSDT', 'DEGOUSDT', 'VETUSDT', 'BADGERUSDT', 'BULLUSDT', 'SUNUSDT', 'DOGEUSDT', 'XRPBULLUSDT', 'BURGERUSDT', 'ARUSDT', 'BUSDTRY', 'USDSUSDT', 'PAXGUSDT', 'AUDIOUSDT', 'BCHUSDT', 'RADUSDT', 'LUNAUSDT', 'JUVUSDT', 'BETAUSDT', 'ETHDOWNUSDT', 'ETCUSDT', 'ANYUSDT', 'NPXSUSDT', 'EURUSDT', 'NMRUSDT', 'BNBUPUSDT', 'ICPUSDT', 'FLOWUSDT']
+
+===========================  SUSHIUPUSDT [1-1] ============================
+No: 1,  19 days ago, SUSHIUPUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+use_file_model:True
+FIT_I&C:150_20
+['ROSEUSDT', 'BCHUPUSDT', 'WAXPUSDT', 'KP3RUSDT', 'STRATUSDT', 'NEARUSDT', 'UNIDOWNUSDT', 'STMXUSDT', 'DNTUSDT', 'GHSTUSDT', 'LINAUSDT', 'GNOUSDT', 'BNBBULLUSDT', 'USDTRUB', 'STPTUSDT', 'TRXUSDT', 'FISUSDT', 'BUSDTRY', 'ADADOWNUSDT', 'CLVUSDT', '1INCHDOWNUSDT', 'PHAUSDT', 'DEXEUSDT', 'ILVUSDT', 'HARDUSDT', 'STXUSDT', 'EOSBULLUSDT', 'XRPBEARUSDT', 'BELUSDT', 'SLPUSDT', 'ASRUSDT', 'ARDRUSDT', 'BTTUSDT', 'WAVESUSDT', 'DARUSDT', 'JUVUSDT', 'REQUSDT', 'EOSUSDT', 'CHESSUSDT', 'PLAUSDT', 'CTXCUSDT', 'YFIDOWNUSDT', 'THETAUSDT', 'GBPUSDT', 'COMPUSDT', 'AKROUSDT', 'QUICKUSDT', 'BCHSVUSDT', 'XTZUPUSDT', 'BZRXUSDT', 'NULSUSDT', 'USDTZAR', 'OMUSDT', 'RAMPUSDT', 'FTMUSDT', 'PAXUSDT', 'USDTBIDR', 'WNXMUSDT', 'VETUSDT', 'SUNUSDT', 'SUSHIUPUSDT', 'CTSIUSDT', 'EURUSDT', 'BATUSDT', 'DOTDOWNUSDT', 'ALGOUSDT', 'JASMYUSDT', 'WTCUSDT', 'AMPUSDT', 'ALPACAUSDT', 'COSUSDT', 'DAIUSDT', 'TRXDOWNUSDT', 'RLCUSDT', 'TRIBEUSDT', 'ZILUSDT', 'ICPUSDT', 'ALPHAUSDT', 'ZRXUSDT', 'CKBUSDT', 'CTKUSDT', 'FTTUSDT', 'VTHOUSDT', 'NBSUSDT', 'MASKUSDT', 'MBLUSDT', 'BCCUSDT', 'DEGOUSDT', 'FILDOWNUSDT', 'ONGUSDT', 'FARMUSDT', 'ALICEUSDT', 'DOTUSDT', 'ADXUSDT', 'RENUSDT', 'ANKRUSDT', 'XVSUSDT', 'USDTBVND', 'AUTOUSDT', 'MINAUSDT', 'BADGERUSDT', 'AUDIOUSDT', 'ANYUSDT', 'USDTNGN', 'SYSUSDT', 'ETHBULLUSDT', 'LITUSDT', 'SCUSDT', 'SUSHIDOWNUSDT', 'MATICUSDT', 'USDTBKRW', 'BEARUSDT', 'YFIIUSDT', 'TORNUSDT', 'QNTUSDT', 'EOSUPUSDT', 'VITEUSDT', 'ARPAUSDT', 'BNTUSDT', 'DUSKUSDT', 'QIUSDT', 'POLSUSDT', 'NUUSDT', 'XTZUSDT', 'MIRUSDT', 'DENTUSDT', 'TKOUSDT', 'USDSBUSDT', 'GTCUSDT', 'CVPUSDT', 'BTCUSDT', 'VIDTUSDT', 'HBARUSDT', 'AGLDUSDT', 'BURGERUSDT', 'TRBUSDT', 'SFPUSDT', 'KNCUSDT', 'ACMUSDT', 'POWRUSDT', 'BNXUSDT', 'BLZUSDT', 'MBOXUSDT', 'AAVEUPUSDT', 'NANOUSDT', 'XLMUPUSDT', 'SANTOSUSDT', 'ETHBEARUSDT', 'BICOUSDT', 'DASHUSDT', 'VENUSDT', 'RUNEUSDT', 'ETHUSDT', 'NKNUSDT', 'CAKEUSDT', 'C98USDT', 'BNBDOWNUSDT', 'BONDUSDT', 'BTCDOWNUSDT', 'SHIBUSDT', 'EPSUSDT', 'ONTUSDT', 'OGNUSDT', 'SKLUSDT', 'FETUSDT', 'BUSDUSDT', 'DOCKUSDT', 'ATOMUSDT', 'ATMUSDT', 'SXPDOWNUSDT', 'JSTUSDT', 'RADUSDT', 'MDTUSDT', 'MTLUSDT', 'CRVUSDT', 'LTCUPUSDT', 'XVGUSDT', 'RGTUSDT', 'SANDUSDT', 'FUNUSDT', 'FLOWUSDT', 'BNBBEARUSDT', 'HOTUSDT', 'KAVAUSDT', 'XTZDOWNUSDT', 'AVAUSDT', 'GALAUSDT', 'BCHABCUSDT', 'RIFUSDT', 'DATAUSDT', 'SUSDUSDT', 'GRTUSDT', 'UMAUSDT', 'USDTUAH', 'USDTDAI', 'ETCUSDT', 'DOGEUSDT', 'PORTOUSDT', 'WRXUSDT', 'XMRUSDT', 'XRPUPUSDT', 'GXSUSDT', 'LSKUSDT', 'TROYUSDT', 'EOSBEARUSDT', 'MFTUSDT', 'KEYUSDT', 'EGLDUSDT', 'REEFUSDT', 'PAXGUSDT', 'AUCTIONUSDT', 'LINKUPUSDT', 'BKRWUSDT', 'SUSHIUSDT', 'ELFUSDT', 'POLYUSDT', 'SXPUPUSDT', 'BCHUSDT', 'RNDRUSDT', 'LTCDOWNUSDT', 'BNBUSDT', 'CFXUSDT', 'ZECUSDT', 'BARUSDT', 'TLMUSDT', 'USDTBRL', 'TOMOUSDT', 'MOVRUSDT', 'MANAUSDT', 'DFUSDT', 'LRCUSDT', 'XZCUSDT', 'PERLUSDT', 'BULLUSDT', 'LINKDOWNUSDT', 'ORNUSDT', 'ICXUSDT', 'QTUMUSDT', 'ANTUSDT', 'FILUSDT', 'SXPUSDT', 'BALUSDT', 'FIDAUSDT', 'PONDUSDT', 'HNTUSDT', 'FORTHUSDT', 'PSGUSDT', 'LUNAUSDT', 'MKRUSDT', 'IRISUSDT', 'MCUSDT', 'COCOSUSDT', 'SOLUSDT', 'TWTUSDT', 'HCUSDT', 'YGGUSDT', 'DCRUSDT', 'PUNDIXUSDT', 'KEEPUSDT', 'SRMUSDT', 'AUDUSDT', 'USDTGYEN', 'TVKUSDT', 'BEAMUSDT', 'AAVEUSDT', 'ZENUSDT', 'YFIUPUSDT', 'VGXUSDT', 'GTOUSDT', 'XRPDOWNUSDT', 'USDTTRY', 'TRXUPUSDT', 'ERNUSDT', 'BNBUPUSDT', 'FIOUSDT', 'USDTIDRT', 'CHZUSDT', 'LINKUSDT', 'SNXUSDT', 'MLNUSDT', 'IDEXUSDT', 'FILUPUSDT', 'FRONTUSDT', 'LTOUSDT', 'CHRUSDT', 'UNFIUSDT', 'LTCUSDT', 'WINGUSDT', 'BCHDOWNUSDT', 'ARUSDT', 'BTCUPUSDT', 'DODOUSDT', 'ALCXUSDT', 'FIROUSDT', 'BTCSTUSDT', 'BAKEUSDT', 'NMRUSDT', 'XRPBULLUSDT', 'DOTUPUSDT', 'RAYUSDT', 'STORJUSDT', 'RAREUSDT', 'CELRUSDT', 'COTIUSDT', 'ADAUPUSDT', 'BTSUSDT', 'TRUUSDT', 'MCOUSDT', 'ATAUSDT', 'BETAUSDT', 'BANDUSDT', 'KMDUSDT', 'CVCUSDT', 'AAVEDOWNUSDT', 'AVAXUSDT', 'NPXSUSDT', '1INCHUSDT', 'SUPERUSDT', 'INJUSDT', 'PERPUSDT', 'UNIUPUSDT', 'IOTXUSDT', 'WANUSDT', 'XEMUSDT', 'DGBUSDT', 'BTGUSDT', 'XECUSDT', 'USDCUSDT', 'DIAUSDT', 'ENJUSDT', 'ETHDOWNUSDT', 'ETHUPUSDT', 'OCEANUSDT', 'AXSUSDT', 'UTKUSDT', 'XRPUSDT', 'KSMUSDT', 'ENSUSDT', 'NEOUSDT', 'FORUSDT', 'MITHUSDT', 'KLAYUSDT', 'HIVEUSDT', 'TUSDUSDT', 'TCTUSDT', 'IOSTUSDT', 'OMGUSDT', 'DREPUSDT', 'LAZIOUSDT', 'STORMUSDT', '1INCHUPUSDT', 'RSRUSDT', 'USDPUSDT', 'PNTUSDT', 'UNIUSDT', 'OXTUSDT', 'AIONUSDT', 'TFUELUSDT', 'ADAUSDT', 'ONEUSDT', 'FLMUSDT', 'CITYUSDT', 'OGUSDT', 'LPTUSDT', 'LENDUSDT', 'USDSUSDT', 'MDXUSDT', 'YFIUSDT', 'STRAXUSDT', 'XLMDOWNUSDT', 'DYDXUSDT', 'XLMUSDT', 'REPUSDT', 'CELOUSDT', 'IOTAUSDT', 'WINUSDT', 'PYRUSDT', 'RVNUSDT', 'EOSDOWNUSDT', 'ERDUSDT']
+
+===========================  ROSEUSDT [1-1] ============================
+No: 1,  19 days ago, ROSEUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[ROSEUSDT] roe_total: 5.630000%, wallet_balance:0.19703680133333343, initial_money:0.18654, buy 99, sell 97, count 196
+total_result average:5.630000
+total_result:
+[5.63]
+
+===========================  BCHUPUSDT [1-2] ============================
+No: 2,  19 days ago, BCHUPUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[BCHUPUSDT] roe_total: 21.320000%, wallet_balance:0.38216124000000007, initial_money:0.315, buy 168, sell 165, count 333
+total_result average:13.475000
+total_result:
+[5.63, 21.32]
+
+===========================  WAXPUSDT [1-3] ============================
+No: 3,  19 days ago, WAXPUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[WAXPUSDT] roe_total: -0.490000%, wallet_balance:0.44382567999999983, initial_money:0.446, buy 121, sell 124, count 245
+total_result average:8.820000
+total_result:
+[5.63, 21.32, -0.49]
+
+===========================  KP3RUSDT [1-4] =====err====================
+get_historical_ohlc_data: Length mismatch: Expected axis has 0 elements, new values have 12 elements
+
+===========================  STRATUSDT [1-5] =====err====================
+get_historical_ohlc_data: Length mismatch: Expected axis has 0 elements, new values have 12 elements
+
+===========================  NEARUSDT [1-6] ============================
+No: 6,  19 days ago, NEARUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[NEARUSDT] roe_total: -11.830000%, wallet_balance:9.076190399999998, initial_money:10.294, buy 81, sell 84, count 165
+total_result average:3.657500
+total_result:
+[5.63, 21.32, -0.49, -11.83]
+
+===========================  UNIDOWNUSDT [1-7] ============================
+No: 7,  19 days ago, UNIDOWNUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[UNIDOWNUSDT] roe_total: -17.820000%, wallet_balance:1.6929919999999958, initial_money:2.06, buy 147, sell 144, count 291
+total_result average:-0.638000
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82]
+
+===========================  STMXUSDT [1-8] ============================
+No: 8,  19 days ago, STMXUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[STMXUSDT] roe_total: -31.010000%, wallet_balance:0.02344415199999995, initial_money:0.03398, buy 157, sell 154, count 311
+total_result average:-5.700000
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01]
+
+===========================  DNTUSDT [1-9] ============================
+No: 9,  19 days ago, DNTUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[DNTUSDT] roe_total: -28.680000%, wallet_balance:0.12737308000000036, initial_money:0.1786, buy 120, sell 117, count 237
+total_result average:-8.982857
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68]
+
+===========================  GHSTUSDT [1-10] ============================
+No: 10,  19 days ago, GHSTUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[GHSTUSDT] roe_total: 10.710000%, wallet_balance:2.8231963999999934, initial_money:2.55, buy 85, sell 82, count 167
+total_result average:-6.521250
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71]
+
+===========================  LINAUSDT [1-11] ============================
+No: 11,  19 days ago, LINAUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[LINAUSDT] roe_total: 13.290000%, wallet_balance:0.061971592000000075, initial_money:0.0547, buy 77, sell 80, count 157
+total_result average:-4.320000
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29]
+
+===========================  GNOUSDT [1-12] ============================
+No: 12,  19 days ago, GNOUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[GNOUSDT] roe_total: -4.490000%, wallet_balance:440.9753200000003, initial_money:461.7, buy 113, sell 110, count 223
+total_result average:-4.337000
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49]
+
+===========================  BNBBULLUSDT [1-13] =====err====================
+get_historical_ohlc_data: Length mismatch: Expected axis has 0 elements, new values have 12 elements
+
+===========================  USDTRUB [1-14] ============================
+No: 14,  19 days ago, USDTRUB, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[USDTRUB] roe_total: -14.160000%, wallet_balance:61.15306400000018, initial_money:71.24, buy 187, sell 186, count 373
+total_result average:-5.230000
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16]
+
+===========================  STPTUSDT [1-15] ============================
+No: 15,  19 days ago, STPTUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[STPTUSDT] roe_total: -0.330000%, wallet_balance:0.13375187600000002, initial_money:0.1342, buy 160, sell 163, count 323
+total_result average:-4.821667
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33]
+
+===========================  TRXUSDT [1-16] ============================
+No: 16,  19 days ago, TRXUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[TRXUSDT] roe_total: 7.960000%, wallet_balance:0.10973022400000003, initial_money:0.10164, buy 151, sell 150, count 301
+total_result average:-3.838462
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96]
+
+===========================  FISUSDT [1-17] ============================
+No: 17,  19 days ago, FISUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[FISUSDT] roe_total: 36.040000%, wallet_balance:2.3811582399999986, initial_money:1.7503, buy 140, sell 137, count 277
+total_result average:-0.990000
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04]
+
+===========================  BUSDTRY [1-18] ============================
+No: 18,  19 days ago, BUSDTRY, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[BUSDTRY] roe_total: -12.230000%, wallet_balance:8.469175199999967, initial_money:9.649, buy 149, sell 147, count 296
+total_result average:-1.739333
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23]
+
+===========================  ADADOWNUSDT [1-19] ============================
+No: 19,  19 days ago, ADADOWNUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[ADADOWNUSDT] roe_total: -11.390000%, wallet_balance:0.0038768776000000053, initial_money:0.004375, buy 135, sell 135, count 270
+total_result average:-2.342500
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39]
+
+===========================  CLVUSDT [1-20] ============================
+No: 20,  19 days ago, CLVUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[CLVUSDT] roe_total: -5.400000%, wallet_balance:1.1503419999999982, initial_money:1.216, buy 144, sell 147, count 291
+total_result average:-2.522353
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4]
+
+===========================  1INCHDOWNUSDT [1-21] ============================
+No: 21,  19 days ago, 1INCHDOWNUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[1INCHDOWNUSDT] roe_total: 25.350000%, wallet_balance:0.013096667200000004, initial_money:0.010448, buy 184, sell 185, count 369
+total_result average:-0.973889
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35]
+
+===========================  PHAUSDT [1-22] ============================
+No: 22,  19 days ago, PHAUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[PHAUSDT] roe_total: 10.070000%, wallet_balance:0.8658142400000004, initial_money:0.7866, buy 79, sell 78, count 157
+total_result average:-0.392632
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07]
+
+===========================  DEXEUSDT [1-23] ============================
+No: 23,  19 days ago, DEXEUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[DEXEUSDT] roe_total: 3.690000%, wallet_balance:12.775175999999988, initial_money:12.32, buy 152, sell 155, count 307
+total_result average:-0.188500
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69]
+
+===========================  ILVUSDT [1-24] ============================
+No: 24,  19 days ago, ILVUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[ILVUSDT] roe_total: 3.160000%, wallet_balance:1041.4724400000002, initial_money:1009.6, buy 136, sell 137, count 273
+total_result average:-0.029048
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16]
+
+===========================  HARDUSDT [1-25] ============================
+No: 25,  19 days ago, HARDUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[HARDUSDT] roe_total: -6.980000%, wallet_balance:0.9499376399999981, initial_money:1.0212, buy 136, sell 138, count 274
+total_result average:-0.345000
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98]
+
+===========================  STXUSDT [1-26] ============================
+No: 26,  19 days ago, STXUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[STXUSDT] roe_total: -2.310000%, wallet_balance:1.8023724000000003, initial_money:1.845, buy 138, sell 141, count 279
+total_result average:-0.430435
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31]
+
+===========================  EOSBULLUSDT [1-27] =====err====================
+get_historical_ohlc_data: Length mismatch: Expected axis has 0 elements, new values have 12 elements
+
+===========================  XRPBEARUSDT [1-28] =====err====================
+get_historical_ohlc_data: Length mismatch: Expected axis has 0 elements, new values have 12 elements
+
+===========================  BELUSDT [1-29] ============================
+No: 29,  19 days ago, BELUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[BELUSDT] roe_total: -45.990000%, wallet_balance:1.419366000000004, initial_money:2.628, buy 14, sell 17, count 31
+total_result average:-2.328750
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99]
+
+===========================  SLPUSDT [1-30] ============================
+No: 30,  19 days ago, SLPUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[SLPUSDT] roe_total: 6.380000%, wallet_balance:0.07989511999999997, initial_money:0.0751, buy 100, sell 97, count 197
+total_result average:-1.980400
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38]
+
+===========================  ASRUSDT [1-31] ============================
+No: 31,  19 days ago, ASRUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[ASRUSDT] roe_total: -1.640000%, wallet_balance:6.993248799999998, initial_money:7.11, buy 96, sell 99, count 195
+total_result average:-1.967308
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64]
+
+===========================  ARDRUSDT [1-32] ============================
+No: 32,  19 days ago, ARDRUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[ARDRUSDT] roe_total: -7.810000%, wallet_balance:0.3162175999999997, initial_money:0.343, buy 129, sell 130, count 259
+total_result average:-2.183704
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81]
+
+===========================  BTTUSDT [1-33] ============================
+No: 33,  19 days ago, BTTUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[BTTUSDT] roe_total: -2.440000%, wallet_balance:0.004444928799999988, initial_money:0.004556, buy 107, sell 105, count 212
+total_result average:-2.192857
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44]
+
+===========================  WAVESUSDT [1-34] ============================
+No: 34,  19 days ago, WAVESUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[WAVESUSDT] roe_total: -5.210000%, wallet_balance:25.08241688888893, initial_money:26.46, buy 150, sell 148, count 298
+total_result average:-2.296897
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21]
+
+===========================  DARUSDT [1-35] =====err====================
+get_historical_ohlc_data: Length mismatch: Expected axis has 0 elements, new values have 12 elements
+
+===========================  JUVUSDT [1-36] ============================
+No: 36,  19 days ago, JUVUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[JUVUSDT] roe_total: -2.770000%, wallet_balance:12.231948000000028, initial_money:12.58, buy 175, sell 174, count 349
+total_result average:-2.312667
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77]
+
+===========================  REQUSDT [1-37] ============================
+No: 37,  19 days ago, REQUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[REQUSDT] roe_total: 1.140000%, wallet_balance:0.21695475999999989, initial_money:0.2145, buy 79, sell 80, count 159
+total_result average:-2.201290
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14]
+
+===========================  EOSUSDT [1-38] ============================
+No: 38,  19 days ago, EOSUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[EOSUSDT] roe_total: -13.100000%, wallet_balance:4.03992040000001, initial_money:4.649, buy 39, sell 42, count 81
+total_result average:-2.541875
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1]
+
+===========================  CHESSUSDT [1-39] ============================
+No: 39,  19 days ago, CHESSUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[CHESSUSDT] roe_total: 3.140000%, wallet_balance:3.0744664000000013, initial_money:2.981, buy 251, sell 253, count 504
+total_result average:-2.369697
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14]
+
+===========================  PLAUSDT [1-40] =====err====================
+get_historical_ohlc_data: Length mismatch: Expected axis has 0 elements, new values have 12 elements
+
+===========================  CTXCUSDT [1-41] ============================
+No: 41,  19 days ago, CTXCUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[CTXCUSDT] roe_total: 2.840000%, wallet_balance:0.22141513333333332, initial_money:0.2153, buy 189, sell 191, count 380
+total_result average:-2.216471
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84]
+
+===========================  YFIDOWNUSDT [1-42] ============================
+No: 42,  19 days ago, YFIDOWNUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[YFIDOWNUSDT] roe_total: 15.670000%, wallet_balance:0.8984122000000002, initial_money:0.7767, buy 141, sell 144, count 285
+total_result average:-1.705429
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67]
+
+===========================  THETAUSDT [1-43] ============================
+No: 43,  19 days ago, THETAUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[THETAUSDT] roe_total: 1.300000%, wallet_balance:7.4403827999999805, initial_money:7.345, buy 147, sell 150, count 297
+total_result average:-1.621944
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3]
+
+===========================  GBPUSDT [1-44] ============================
+No: 44,  19 days ago, GBPUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[GBPUSDT] roe_total: -11.550000%, wallet_balance:1.2179384000000066, initial_money:1.377, buy 142, sell 140, count 282
+total_result average:-1.890270
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3, -11.55]
+
+===========================  COMPUSDT [1-45] ============================
+No: 45,  19 days ago, COMPUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[COMPUSDT] roe_total: -6.110000%, wallet_balance:326.00316000000015, initial_money:347.2, buy 54, sell 56, count 110
+total_result average:-2.001316
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3, -11.55, -6.11]
+
+===========================  AKROUSDT [1-46] ============================
+No: 46,  19 days ago, AKROUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[AKROUSDT] roe_total: 3.740000%, wallet_balance:0.040936499999999994, initial_money:0.03946, buy 146, sell 149, count 295
+total_result average:-1.854103
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3, -11.55, -6.11, 3.74]
+
+===========================  QUICKUSDT [1-47] ============================
+No: 47,  19 days ago, QUICKUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[QUICKUSDT] roe_total: 2.850000%, wallet_balance:422.38588000000027, initial_money:410.7, buy 111, sell 111, count 222
+total_result average:-1.736500
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3, -11.55, -6.11, 3.74, 2.85]
+
+===========================  BCHSVUSDT [1-48] =====err====================
+get_historical_ohlc_data: Length mismatch: Expected axis has 0 elements, new values have 12 elements
+
+===========================  XTZUPUSDT [1-49] ============================
+No: 49,  19 days ago, XTZUPUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[XTZUPUSDT] roe_total: 33.290000%, wallet_balance:0.07180395599999984, initial_money:0.05387, buy 182, sell 179, count 361
+total_result average:-0.882195
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3, -11.55, -6.11, 3.74, 2.85, 33.29]
+
+===========================  BZRXUSDT [1-50] ============================
+No: 50,  19 days ago, BZRXUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[BZRXUSDT] roe_total: -11.010000%, wallet_balance:0.36814975999999977, initial_money:0.4137, buy 81, sell 81, count 162
+total_result average:-1.123333
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3, -11.55, -6.11, 3.74, 2.85, 33.29, -11.01]
+
+===========================  NULSUSDT [1-51] ============================
+No: 51,  19 days ago, NULSUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[NULSUSDT] roe_total: -8.390000%, wallet_balance:0.5271476400000004, initial_money:0.5754, buy 32, sell 35, count 67
+total_result average:-1.292326
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3, -11.55, -6.11, 3.74, 2.85, 33.29, -11.01, -8.39]
+
+===========================  USDTZAR [1-52] =====err====================
+get_historical_ohlc_data: Length mismatch: Expected axis has 0 elements, new values have 12 elements
+
+===========================  OMUSDT [1-53] ============================
+No: 53,  19 days ago, OMUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[OMUSDT] roe_total: -2.440000%, wallet_balance:0.22439183999999954, initial_money:0.23, buy 109, sell 112, count 221
+total_result average:-1.318409
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3, -11.55, -6.11, 3.74, 2.85, 33.29, -11.01, -8.39, -2.44]
+
+===========================  RAMPUSDT [1-54] ============================
+No: 54,  19 days ago, RAMPUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[RAMPUSDT] roe_total: -6.660000%, wallet_balance:0.2556558799999999, initial_money:0.2739, buy 72, sell 74, count 146
+total_result average:-1.437111
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3, -11.55, -6.11, 3.74, 2.85, 33.29, -11.01, -8.39, -2.44, -6.66]
+
+===========================  FTMUSDT [1-55] ============================
+No: 55,  19 days ago, FTMUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[FTMUSDT] roe_total: -3.030000%, wallet_balance:2.8055698800000033, initial_money:2.8931, buy 130, sell 133, count 263
+total_result average:-1.471739
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3, -11.55, -6.11, 3.74, 2.85, 33.29, -11.01, -8.39, -2.44, -6.66, -3.03]
+
+===========================  PAXUSDT [1-56] =====err====================
+get_historical_ohlc_data: Length mismatch: Expected axis has 0 elements, new values have 12 elements
+
+===========================  USDTBIDR [1-57] ============================
+No: 57,  19 days ago, USDTBIDR, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[USDTBIDR] roe_total: -6.240000%, wallet_balance:13371.384800000033, initial_money:14262.0, buy 76, sell 79, count 155
+total_result average:-1.573191
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3, -11.55, -6.11, 3.74, 2.85, 33.29, -11.01, -8.39, -2.44, -6.66, -3.03, -6.24]
+
+===========================  WNXMUSDT [1-58] ============================
+No: 58,  19 days ago, WNXMUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
+[WNXMUSDT] roe_total: 2.190000%, wallet_balance:52.516323999999955, initial_money:51.39, buy 63, sell 66, count 129
+total_result average:-1.494792
+total_result:
+[5.63, 21.32, -0.49, -11.83, -17.82, -31.01, -28.68, 10.71, 13.29, -4.49, -14.16, -0.33, 7.96, 36.04, -12.23, -11.39, -5.4, 25.35, 10.07, 3.69, 3.16, -6.98, -2.31, -45.99, 6.38, -1.64, -7.81, -2.44, -5.21, -2.77, 1.14, -13.1, 3.14, 2.84, 15.67, 1.3, -11.55, -6.11, 3.74, 2.85, 33.29, -11.01, -8.39, -2.44, -6.66, -3.03, -6.24, 2.19]
+
+===========================  VETUSDT [1-59] ============================
+No: 59,  19 days ago, VETUSDT, 2021-10-31 ~ 2021-11-01 
+timeframe:1m period_unit:720 (total_unit:2880.0)
