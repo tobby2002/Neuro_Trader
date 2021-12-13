@@ -1,7 +1,7 @@
 import numpy as np
 import pickle
 import json
-from sklearn.preprocessing import MinMaxScaler, minmax_scale
+from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 from datetime import datetime
 import time
@@ -10,6 +10,7 @@ window_size = 20
 skip = 1
 layer_size = 500
 output_size = 3
+
 
 def softmax(z):
     assert len(z.shape) == 2
@@ -20,14 +21,15 @@ def softmax(z):
     div = div[:, np.newaxis]
     return e_x / div
 
-def get_state(parameters, t, window_size = 20):
+
+def get_state(parameters, t, window_size=20):
     outside = []
     d = t - window_size + 1
     for parameter in parameters:
         block = (
-            parameter[d : t + 1]
+            parameter[d: t + 1]
             if d >= 0
-            else -d * [parameter[0]] + parameter[0 : t + 1]
+            else -d * [parameter[0]] + parameter[0: t + 1]
         )
         res = []
         for i in range(window_size - 1):
@@ -39,11 +41,10 @@ def get_state(parameters, t, window_size = 20):
 
 
 class Deep_Evolution_Strategy:
-
     inputs = None
 
     def __init__(
-        self, weights, reward_function, population_size, sigma, learning_rate
+            self, weights, reward_function, population_size, sigma, learning_rate
     ):
         self.weights = weights
         self.reward_function = reward_function
@@ -60,8 +61,8 @@ class Deep_Evolution_Strategy:
 
     def get_weights(self):
         return self.weights
-    
-    def train(self, epoch = 100, print_every = 1):
+
+    def train(self, epoch=100, print_every=1):
         lasttime = time.time()
         for i in range(epoch):
             population = []
@@ -80,10 +81,10 @@ class Deep_Evolution_Strategy:
             for index, w in enumerate(self.weights):
                 A = np.array([p[index] for p in population])
                 self.weights[index] = (
-                    w
-                    + self.learning_rate
-                    / (self.population_size * self.sigma)
-                    * np.dot(A.T, rewards).T
+                        w
+                        + self.learning_rate
+                        / (self.population_size * self.sigma)
+                        * np.dot(A.T, rewards).T
                 )
             if (i + 1) % print_every == 0:
                 print(
@@ -91,7 +92,8 @@ class Deep_Evolution_Strategy:
                     % (i + 1, self.reward_function(self.weights))
                 )
         print('time taken to train:', time.time() - lasttime, 'seconds')
-        
+
+
 class Model:
     def __init__(self, input_size, layer_size, output_size):
         self.weights = [
@@ -116,7 +118,6 @@ class Model:
 
 
 class Agent:
-
     POPULATION_SIZE = 15
     SIGMA = 0.1
     LEARNING_RATE = 0.03
@@ -135,19 +136,6 @@ class Agent:
             self.LEARNING_RATE,
         )
         self.minmax = minmax
-
-        self.positions = []
-        self.fee_rate = 0
-        self.buy_sell_count_max = 1
-        self.realized_pnl_total = 0
-        self.fee_total = 0
-        self.assets = []
-        self.wallet_balance_t = []
-        self.analysis = []
-        self.asset = []
-        self.order = []
-        self.atrade = []
-        self.position = []
         self._initiate()
 
     def _initiate(self):
@@ -159,16 +147,6 @@ class Agent:
         self._capital = self.initial_money
         self._queue = []
         self._scaled_capital = self.minmax.transform([[self._capital, 2]])[0, 0]
-
-        self.positions = []
-        self.fee_rate = 0
-        self.buy_sell_count_max = 1
-        self.realized_pnl_total = 0
-        self.fee_total = 0
-        self.assets = []
-        self.wallet_balance_t = []
-        self.analysis = []
-        self.asset = []
 
     def reset_capital(self, capital):
         if capital:
@@ -198,96 +176,10 @@ class Agent:
             window_size - 1,
             self._inventory,
             self._scaled_capital,
-            timeseries = np.array(self._queue).T.tolist(),
+            timeseries=np.array(self._queue).T.tolist(),
         )
         action, prob = self.act_softmax(state)
         print(prob)
-
-
-
-
-
-
-        price = real_close
-
-        # chart
-        chart = [price]
-
-        if action == 1 or action == 2:
-            last_avg_price = self.positions[-1][0] if self.positions else 0
-            last_hold_size = self.positions[-1][1] if self.positions else 0
-
-            di = 1 if action == 1 else -1
-            buy_sell = 'buy' if action == 1 else 'sell'
-
-            # buy_norm_minmax = minmax_scale(buys, feature_range=(0, 1), axis=0, copy=True)
-            # quantity = round(buy_norm_minmax[-1] * self.buy_sell_count_max, 4)
-            # quantity_limit = quantity
-            # if (abs(last_hold_size + di * quantity)) > self.buy_sell_count_max:
-            #     quantity_limit = self.buy_sell_count_max - abs(last_hold_size)
-            quantity_limit = 1
-
-            # futures
-            # time = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-            # symbol = 'BTCUSDT'
-            transac_size = di * quantity_limit
-            fee = -abs(transac_size * self.fee_rate * price * 1 / 100)
-
-            # order
-            self.order = [buy_sell, price, transac_size]
-            # order = [time, symbol, 'market', buy_sell, price, transac_size]
-            # orders.append(order)
-
-            hold_size = last_hold_size + transac_size
-
-            realized_pnl = 0
-            if last_hold_size * transac_size > 0:
-                avg_price = abs(
-                    (last_avg_price * last_hold_size + price * transac_size) / hold_size) if hold_size else 0
-                realized_pnl = 0
-            else:
-                if abs(last_hold_size) == abs(transac_size):
-                    avg_price = 0
-                    realized_pnl = (price - last_avg_price) * last_hold_size
-                elif abs(last_hold_size) > abs(transac_size):
-                    avg_price = last_avg_price
-                    realized_pnl = (last_avg_price - price) * transac_size
-
-                elif abs(last_hold_size) < abs(transac_size):
-                    avg_price = price
-                    realized_pnl = (price - last_avg_price) * last_hold_size
-
-            pnl = (price - last_avg_price) * last_hold_size if last_avg_price else 0
-            roe = round((pnl / abs(last_avg_price * last_hold_size)) * 100, 2) if last_avg_price * last_hold_size else 0
-            self.realized_pnl_total += realized_pnl
-
-            # trade
-            self.atrade = [price, transac_size, '||', buy_sell, fee, realized_pnl]
-            # trades.clear()
-            # trades.append(trade)
-
-            # position
-            self.position = [avg_price, hold_size, '||', pnl, roe]
-            self.positions.clear()
-            self.positions.append(self.position)
-
-            self.fee_total += fee
-            wallet_balance = initial_money + self.realized_pnl_total + self.fee_total + pnl
-            net_pnl_t = self.realized_pnl_total + self.fee_total + pnl
-
-            # asset
-            invest_money = abs(avg_price * hold_size)
-            cash_money = initial_money + self.realized_pnl_total + self.fee_total - invest_money
-            self.asset = [wallet_balance, initial_money, '|', invest_money, cash_money]
-
-            self.wallet_balance_t.append(wallet_balance)
-
-            # analysis
-            self.analysis = [net_pnl_t, round((net_pnl_t / initial_money) * 100, 4),
-                        round((net_pnl_t / max(self.trend)) * 100, 4), '|', self.fee_total, self.realized_pnl_total]
-            # self.assets.append(asset)
-
-
         if action == 1 and self._scaled_capital >= close:
             self._inventory.append(close)
             self._scaled_capital -= close
@@ -297,10 +189,6 @@ class Agent:
                 'action': 'buy',
                 'balance': self._capital,
                 'timestamp': str(datetime.now()),
-                'order': self.order,
-                'asset': self.asset,
-                'analysis': self.analysis,
-                'positions': self.positions,
             }
         elif action == 2 and len(self._inventory):
             bought_price = self._inventory.pop(0)
@@ -311,8 +199,8 @@ class Agent:
             )[0, 0]
             try:
                 invest = (
-                    (real_close - scaled_bought_price) / scaled_bought_price
-                ) * 100
+                                 (real_close - scaled_bought_price) / scaled_bought_price
+                         ) * 100
             except:
                 invest = 0
             return {
@@ -322,11 +210,6 @@ class Agent:
                 'balance': self._capital,
                 'action': 'sell',
                 'timestamp': str(datetime.now()),
-                'order': self.order,
-                'asset': self.asset,
-                'analysis': self.analysis,
-                'positions': self.positions,
-
             }
         else:
             return {
@@ -334,10 +217,6 @@ class Agent:
                 'action': 'nothing',
                 'balance': self._capital,
                 'timestamp': str(datetime.now()),
-                'order': self.order,
-                'asset': self.asset,
-                'analysis': self.analysis,
-                'positions': self.positions,
             }
 
     def change_data(self, timeseries, skip, initial_money, real_trend, minmax):
@@ -368,7 +247,7 @@ class Agent:
         z_inventory = (mean_inventory - self._mean) / self._std
         z_capital = (capital - self._mean) / self._std
         concat_parameters = np.concatenate(
-            [state, [[len_inventory, z_inventory, z_capital]]], axis = 1
+            [state, [[len_inventory, z_inventory, z_capital]]], axis=1
         )
         return concat_parameters
 
@@ -382,7 +261,7 @@ class Agent:
 
         for t in range(0, len(self.trend) - 1, self.skip):
             action = self.act(state)
-            if action == 1 and starting_money >= self.trend[t]:
+            if action == 1 and starting_money >= self.trend[t] and len(inventory) < 1:
                 inventory.append(self.trend[t])
                 starting_money -= self.trend[t]
 
@@ -402,7 +281,7 @@ class Agent:
         return invests * 0.7 + score * 0.3
 
     def fit(self, iterations, checkpoint):
-        self.es.train(iterations, print_every = checkpoint)
+        self.es.train(iterations, print_every=checkpoint)
 
     def buy(self):
         initial_money = self._scaled_capital
@@ -416,11 +295,15 @@ class Agent:
         states_sell = []
         states_buy = []
 
+        states_pnl = []
+        realized_pnl = []
+        unrealized_pnl = 0
+
         for t in range(0, len(self.trend) - 1, self.skip):
             action, prob = self.act_softmax(state)
             print(t, prob)
 
-            if action == 1 and starting_money >= self.trend[t] and t < (len(self.trend) - 1 - window_size):
+            if action == 1 and starting_money >= self.trend[t] and t < (len(self.trend) - 1 - window_size) and len(inventory) < 1:
                 inventory.append(self.trend[t])
                 real_inventory.append(self.real_trend[t])
                 real_starting_money -= self.real_trend[t]
@@ -430,8 +313,10 @@ class Agent:
                     'day %d: buy 1 unit at price %f, total balance %f'
                     % (t, self.real_trend[t], real_starting_money)
                 )
-
             elif action == 2 and len(inventory):
+
+                realized_pnl.append(self.real_trend[t] - np.mean(real_inventory))
+
                 bought_price = inventory.pop(0)
                 real_bought_price = real_inventory.pop(0)
                 starting_money += self.trend[t]
@@ -439,64 +324,98 @@ class Agent:
                 states_sell.append(t)
                 try:
                     invest = (
-                        (self.real_trend[t] - real_bought_price)
-                        / real_bought_price
-                    ) * 100
+                                     (self.real_trend[t] - real_bought_price)
+                                     / real_bought_price
+                             ) * 100
                 except:
                     invest = 0
                 print(
                     'day %d, sell 1 unit at price %f, investment %f %%, total balance %f,'
                     % (t, self.real_trend[t], invest, real_starting_money)
                 )
+
+            unrealized_pnl = self.real_trend[t] - np.mean(real_inventory) if real_inventory else 0
+
             state = self.get_state(
                 t + 1, inventory, starting_money, self.timeseries
             )
 
         invest = (
-            (real_starting_money - real_initial_money) / real_initial_money
-        ) * 100
+                         (real_starting_money - real_initial_money) / real_initial_money
+                 ) * 100
         total_gains = real_starting_money - real_initial_money
-        return states_buy, states_sell, total_gains, invest
+        asset_total = real_starting_money + np.sum(realized_pnl) + unrealized_pnl
+        pnl_total = np.sum(realized_pnl) + unrealized_pnl
+        roe_total = (pnl_total/real_initial_money)*100
+        states_pnl = [real_initial_money, asset_total, pnl_total, roe_total, np.sum(realized_pnl), unrealized_pnl]
+
+        return states_buy, states_sell, total_gains, invest, states_pnl
+
+df = pd.read_csv('TWTR.csv')
+df.head()
+
+parameters = [df['Close'].tolist(), df['Volume'].tolist()]
+
+## Global parameters
+window_size = 20
+skip = 1
+layer_size = 500
+output_size = 3
+
+def get_state(parameters, t, window_size=20):
+    outside = []
+    d = t - window_size + 1
+    for parameter in parameters:
+        block = parameter[d: t + 1] if d >= 0 else -d * [parameter[0]] + parameter[0: t + 1]
+        res = []
+        for i in range(window_size - 1):
+            res.append(block[i + 1] - block[i])
+        for i in range(1, window_size, 1):
+            res.append(block[i] - block[0])
+        outside.append(res)
+    return np.array(outside).reshape((1, -1))
 
 
-with open('model.pkl', 'rb') as fopen:
-    model = pickle.load(fopen)
+inventory_size = 1
+mean_inventory = 0.5
+capital = 2
+concat_parameters = np.concatenate([get_state(parameters, 20), [[inventory_size,
+                                                                 mean_inventory,
+                                                                 capital]]], axis=1)
+
+input_size = concat_parameters.shape[1]
+model = Model(input_size=input_size, layer_size=layer_size, output_size=output_size)
+
+# with open('model.pkl', 'rb') as fopen:
+#     model = pickle.load(fopen)
 
 df = pd.read_csv('TWTR.csv')
 real_trend = df['Close'].tolist()
 parameters = [df['Close'].tolist(), df['Volume'].tolist()]
-minmax = MinMaxScaler(feature_range = (100, 200)).fit(np.array(parameters).T)
+minmax = MinMaxScaler(feature_range=(100, 200)).fit(np.array(parameters).T)
 scaled_parameters = minmax.transform(np.array(parameters).T).T.tolist()
 initial_money = np.max(parameters[0]) * 2
 
-
-
-agent = Agent(model = model,
-              timeseries = scaled_parameters,
-              skip = skip,
-              initial_money = initial_money,
-              real_trend = real_trend,
-              minmax = minmax)
-
+agent = Agent(model=model,
+              timeseries=scaled_parameters,
+              skip=skip,
+              initial_money=initial_money,
+              real_trend=real_trend,
+              minmax=minmax)
+# agent.fit(iterations=500, checkpoint=10)
 agent.fit(iterations=100, checkpoint=10)
 
+with open('model.pkl', 'wb') as fopen:
+    pickle.dump(agent, fopen)
 
-c = df['Close'].tolist()
-v = df['Volume'].tolist()
-
-
-init_m = agent._capital
-print(init_m)
-for i in range(200):
-    data = [c[i], v[i]]
-    requested = agent.trade(data)
-    print(requested)
-last_m = agent._capital
-
-print('init_m:')
-print(init_m)
-print('last_m:')
-print(last_m)
-
-print('last_m - init_m:')
-print(init_m - last_m)
+_, _, total_gains, invest, states_pnl = agent.buy()
+print(total_gains, invest, states_pnl)
+print("[real_initial_money, asset_total, pnl_total, roe_total, np.sum(realized_pnl), unrealized_pnl]")
+print(states_pnl)
+# # trade
+# close = df['Close'].tolist()
+# volume = df['Volume'].tolist()
+#
+# for i in range(200):
+#     requested = agent.trade([close[i], volume[i]])
+#     print(str(i) +' : ' + str(requested))
