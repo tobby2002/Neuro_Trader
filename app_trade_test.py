@@ -243,7 +243,7 @@ class Agent:
         asset_total = real_initial_money + np.sum(self.realized_pnl) + unrealized_pnl
         pnl_total = np.sum(self.realized_pnl) + unrealized_pnl
         roe_total = (pnl_total/real_initial_money)*100
-        states_pnl = [real_initial_money, asset_total, pnl_total, roe_total, np.sum(self.realized_pnl), unrealized_pnl]
+        states_pnl = [real_initial_money, asset_total, pnl_total, str(roe_total) + '%', np.sum(self.realized_pnl), unrealized_pnl]
 
         return {
                 'action': action,
@@ -381,7 +381,7 @@ class Agent:
         asset_total = real_initial_money + np.sum(realized_pnl) + unrealized_pnl
         pnl_total = np.sum(realized_pnl) + unrealized_pnl
         roe_total = (pnl_total/real_initial_money)*100
-        states_pnl = [real_initial_money, asset_total, pnl_total, roe_total, np.sum(realized_pnl), unrealized_pnl]
+        states_pnl = [real_initial_money, asset_total, pnl_total, str(roe_total) + '%', np.sum(realized_pnl), unrealized_pnl]
 
         print(
             'Total status: day %d, \n[real_initial_money, asset_total, pnl_total, roe_total, np.sum(realized_pnl), unrealized_pnl]\n%s'
