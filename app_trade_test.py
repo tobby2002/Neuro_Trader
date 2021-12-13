@@ -59,8 +59,8 @@ class Deep_Evolution_Strategy:
             weights_population.append(weights[index] + jittered)
         return weights_population
 
-    def get_weights(self):
-        return self.weights
+    # def get_weights(self):
+    #     return self.weights
 
     def train(self, epoch=100, print_every=1):
         lasttime = time.time()
@@ -113,8 +113,8 @@ class Model:
     def get_weights(self):
         return self.weights
 
-    def set_weights(self, weights):
-        self.weights = weights
+    # def set_weights(self, weights):
+    #     self.weights = weights
 
 
 class Agent:
@@ -148,6 +148,9 @@ class Agent:
         self._queue = []
         self._scaled_capital = self.minmax.transform([[self._capital, 2]])[0, 0]
 
+        self.real_inventory = []
+        self.realized_pnl = []
+
     def reset_capital(self, capital):
         if capital:
             self._capital = capital
@@ -162,6 +165,7 @@ class Agent:
         scaled_data = self.minmax.transform([data])[0]
         real_close = data[0]
         close = scaled_data[0]
+
         if len(self._queue) >= window_size:
             self._queue.pop(0)
         self._queue.append(scaled_data)
@@ -180,17 +184,22 @@ class Agent:
         )
         action, prob = self.act_softmax(state)
         print(prob)
-        if action == 1 and self._scaled_capital >= close:
+        if action == 1 and self._scaled_capital >= close and len(self._inventory) < 1:
+            self.real_inventory.append(real_close)
+
             self._inventory.append(close)
             self._scaled_capital -= close
             self._capital -= real_close
-            return {
-                'status': 'buy 1 unit, cost %f' % (real_close),
-                'action': 'buy',
-                'balance': self._capital,
-                'timestamp': str(datetime.now()),
-            }
+            # return {
+            #     'status': 'buy 1 unit, cost %f' % (real_close),
+            #     'action': 'buy',
+            #     'balance': self._capital,
+            #     'timestamp': str(datetime.now()),
+            #     'states_pnl': str(states_pnl),
+            # }
         elif action == 2 and len(self._inventory):
+            self.realized_pnl.append((real_close - np.mean(self.real_inventory)) if self.real_inventory else 0)
+            self.real_inventory.clear()
             bought_price = self._inventory.pop(0)
             self._scaled_capital += close
             self._capital += real_close
@@ -203,21 +212,44 @@ class Agent:
                          ) * 100
             except:
                 invest = 0
-            return {
-                'status': 'sell 1 unit, price %f' % (real_close),
-                'investment': invest,
-                'gain': real_close - scaled_bought_price,
-                'balance': self._capital,
-                'action': 'sell',
-                'timestamp': str(datetime.now()),
-            }
+
+
+            # return {
+            #     'status': 'sell 1 unit, price %f' % (real_close),
+            #     'investment': invest,
+            #     'gain': real_close - scaled_bought_price,
+            #     'balance': self._capital,
+            #     'action': 'sell',
+            #     'timestamp': str(datetime.now()),
+            #     'states_pnl': str(states_pnl),
+            #
+            # }
         else:
-            return {
-                'status': 'do nothing',
-                'action': 'nothing',
-                'balance': self._capital,
+            pass
+            # return {
+            #     'status': 'do nothing',
+            #     'action': 'nothing',
+            #     'balance': self._capital,
+            #     'timestamp': str(datetime.now()),
+            #     'states_pnl': str(states_pnl),
+            # }
+
+        unrealized_pnl = 0
+
+        if self.real_inventory:
+            unrealized_pnl = (real_close - np.mean(self.real_inventory)) if self.real_inventory else 0
+        real_initial_money = self.initial_money
+
+        asset_total = real_initial_money + np.sum(self.realized_pnl) + unrealized_pnl
+        pnl_total = np.sum(self.realized_pnl) + unrealized_pnl
+        roe_total = (pnl_total/real_initial_money)*100
+        states_pnl = [real_initial_money, asset_total, pnl_total, roe_total, np.sum(self.realized_pnl), unrealized_pnl]
+
+        return {
+                'action': action,
                 'timestamp': str(datetime.now()),
-            }
+                'states_pnl': str(states_pnl),
+        }
 
     def change_data(self, timeseries, skip, initial_money, real_trend, minmax):
         self.timeseries = timeseries
@@ -334,7 +366,8 @@ class Agent:
                     % (t, self.real_trend[t], invest, real_starting_money)
                 )
 
-            unrealized_pnl = self.real_trend[t] - np.mean(real_inventory) if real_inventory else 0
+            if real_inventory:
+                unrealized_pnl = self.real_trend[t] - np.mean(real_inventory) if real_inventory else 0
 
             state = self.get_state(
                 t + 1, inventory, starting_money, self.timeseries
@@ -344,11 +377,16 @@ class Agent:
                          (real_starting_money - real_initial_money) / real_initial_money
                  ) * 100
         total_gains = real_starting_money - real_initial_money
-        asset_total = real_starting_money + np.sum(realized_pnl) + unrealized_pnl
+
+        asset_total = real_initial_money + np.sum(realized_pnl) + unrealized_pnl
         pnl_total = np.sum(realized_pnl) + unrealized_pnl
         roe_total = (pnl_total/real_initial_money)*100
         states_pnl = [real_initial_money, asset_total, pnl_total, roe_total, np.sum(realized_pnl), unrealized_pnl]
 
+        print(
+            'Total status: day %d, \n[real_initial_money, asset_total, pnl_total, roe_total, np.sum(realized_pnl), unrealized_pnl]\n%s'
+            % (t, str(states_pnl))
+        )
         return states_buy, states_sell, total_gains, invest, states_pnl
 
 df = pd.read_csv('TWTR.csv')
@@ -409,13 +447,12 @@ with open('model.pkl', 'wb') as fopen:
     pickle.dump(agent, fopen)
 
 _, _, total_gains, invest, states_pnl = agent.buy()
-print(total_gains, invest, states_pnl)
-print("[real_initial_money, asset_total, pnl_total, roe_total, np.sum(realized_pnl), unrealized_pnl]")
-print(states_pnl)
-# # trade
-# close = df['Close'].tolist()
-# volume = df['Volume'].tolist()
-#
-# for i in range(200):
-#     requested = agent.trade([close[i], volume[i]])
-#     print(str(i) +' : ' + str(requested))
+# print(total_gains, invest, states_pnl)
+
+# trade
+close = df['Close'].tolist()
+volume = df['Volume'].tolist()
+
+for i in range(200):
+    requested = agent.trade([close[i], volume[i]])
+    print(str(i) +' : ' + str(requested))
