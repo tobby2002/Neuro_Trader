@@ -253,6 +253,33 @@ def fractals_only_hi_lo(df):
     df = df.drop(['fractals_high', 'fractals_low'], axis=1)
     return df
 
+def backtest_trade_new(df, wavepattern_up):
+    w = wavepattern_up
+    high = w.high
+    low = w.low
+    idx_end = w.idx_end
+    close_start = df.iloc[idx_end]['Close']
+
+    profit_target = w.waves['wave1'].high
+    loss_target = high
+
+    d = df[w.idx_end + 1:]
+
+    c_l = d.Close.tolist()
+    h_l = d.Close.tolist()
+    l_l = d.Close.tolist()
+
+
+    pnl = 0.0
+    fee = 0.0
+    for i, c in enumerate(c_l):
+        if h_l[i] >= loss_target:
+            pnl = -((loss_target - close_start)/close_start)*100
+            return pnl, fee + 0.08
+        elif l_l[i] <= profit_target:
+            pnl = ((close_start - profit_target)/close_start)*100
+            return pnl, fee + 0.06
+    return pnl, fee
 
 def backtest_trade(df, wavepattern_up):
     w = wavepattern_up
@@ -370,7 +397,7 @@ def loopsymbol(symbol):
                                     ])
                                     # filter_next_wave2_low_indexs.append(wavepattern_up.waves['wave2'].idx_end)
                                     # filter_next_low_index = wavepattern_up.waves['wave2'].idx_end
-                                    pnl, fee = backtest_trade(df_all, wavepattern_up)
+                                    pnl, fee = backtest_trade_new(df_all, wavepattern_up)
                                     pnl_total.append(pnl)
                                     fee_total.append(fee)
 
