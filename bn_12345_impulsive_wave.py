@@ -266,8 +266,8 @@ def backtest_trade_new(df, wavepattern_up):
     d = df[w.idx_end + 1:]
 
     c_l = d.Close.tolist()
-    h_l = d.Close.tolist()
-    l_l = d.Close.tolist()
+    h_l = d.High.tolist()
+    l_l = d.Low.tolist()
 
 
     pnl = 0.0
