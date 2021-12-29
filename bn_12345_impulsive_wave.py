@@ -461,6 +461,16 @@ def loopsymbol(symbol):
         print(sum(fee_total))
         print(sum(pnl_total) - sum(fee_total))
         print(sum(count_total))
+        print('=================n1==============')
+        p1 = sum(map(lambda x: x[0], pnl_fee_total_n1))
+        f1 = sum(map(lambda x: x[1], pnl_fee_total_n1))
+        print(p1, f1)
+        print(p1 - f1)
+        print('=================n2==============')
+        p2 = sum(map(lambda x: x[0], pnl_fee_total_n1))
+        f2 = sum(map(lambda x: x[1], pnl_fee_total_n1))
+        print(p2, f2)
+        print(p2 - f2)
         print('===============================')
 
         # msgt = ('[pnl_mean:%s]' %
