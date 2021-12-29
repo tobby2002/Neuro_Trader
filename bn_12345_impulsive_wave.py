@@ -253,7 +253,7 @@ def fractals_only_hi_lo(df):
     df = df.drop(['fractals_high', 'fractals_low'], axis=1)
     return df
 
-def backtest_trade_new(df, wavepattern_up):
+def backtest_trade_n1(df, wavepattern_up):
     w = wavepattern_up
     high = w.high
     low = w.low
@@ -269,17 +269,42 @@ def backtest_trade_new(df, wavepattern_up):
     h_l = d.High.tolist()
     l_l = d.Low.tolist()
 
-
     pnl = 0.0
     fee = 0.0
     for i, c in enumerate(c_l):
         if h_l[i] >= loss_target:
             pnl = -((loss_target - close_start)/close_start)*100
-            return pnl, fee + 0.08
+            return [pnl, fee + 0.08]
         elif l_l[i] <= profit_target:
             pnl = ((close_start - profit_target)/close_start)*100
-            return pnl, fee + 0.06
-    return pnl, fee
+            return [pnl, fee + 0.06]
+    return [pnl, fee]
+
+
+def backtest_trade_n2(df, wavepattern_up):
+    w = wavepattern_up
+    high = w.high
+    low = w.low
+    idx_end = w.idx_end
+    close_start = df.iloc[idx_end]['Close']
+
+    diff_all = close_start - low
+    pf_target = w.waves['wave1'].high
+    loss_target = high
+
+    d = df[w.idx_end+1:]
+
+    close_ing_list = d.Close.tolist()
+    pnl = 0.0
+    fee = 0.00
+    for c in close_ing_list:
+        if c >= loss_target:
+            pnl = -((c - close_start)/close_start)*100
+            return [pnl, fee + 0.08]
+        elif c <= pf_target:
+            pnl = ((close_start - c)/close_start)*100
+            return [pnl, fee + 0.08]
+    return [pnl, fee]
 
 def backtest_trade(df, wavepattern_up):
     w = wavepattern_up
@@ -323,6 +348,8 @@ def backtest_trade(df, wavepattern_up):
 from concurrent import futures
 pnl_total = []
 fee_total = []
+pnl_fee_total_n1 = []
+pnl_fee_total_n2 = []
 count_total = []
 def loopsymbol(symbol):
     print('\nsymbols: %s' % (symbols))
@@ -397,10 +424,16 @@ def loopsymbol(symbol):
                                     ])
                                     # filter_next_wave2_low_indexs.append(wavepattern_up.waves['wave2'].idx_end)
                                     # filter_next_low_index = wavepattern_up.waves['wave2'].idx_end
-                                    pnl, fee = backtest_trade_new(df_all, wavepattern_up)
+                                    pnl, fee = backtest_trade(df_all, wavepattern_up)
                                     pnl_total.append(pnl)
                                     fee_total.append(fee)
-
+                                    
+                                    pnl_fee_n1 = backtest_trade_n1(df_all, wavepattern_up)
+                                    pnl_fee_total_n1.append(pnl_fee_n1)
+                                    
+                                    pnl_fee_n2 = backtest_trade_n2(df_all, wavepattern_up)
+                                    pnl_fee_total_n2.append(pnl_fee_n2)
+                                    
                                     # msgi = ('%s (%s)impulsive wave [pnl:%s][pnl_mean:%s][pnl_total:%s]' %
                                     #        (symbol, len(wavepattern_up_l), pnl, np.mean(np.array(pnl_total)),
                                     #         str(pnl_total)))
