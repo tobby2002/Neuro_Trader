@@ -2,10 +2,12 @@ A_finder
 insert wave_data :wave
 insert standby_data :standby
 
-
 A_trader
 check :standby 
 order
+if ordered:
+update :wave :standby
+
 
 :exchange
 id
