@@ -405,3 +405,39 @@ class Wave45(Bot):
         # log history entry signals
         # logger.info(f"long_entry_hist: {self.long_entry_signal_history}")
         # logger.info(f"short_entry_hist: {self.short_entry_signal_history}")
+        
+
+    def wave_finder(self, df):
+        df_all = df
+        df_all.reset_index(inplace=True)
+        df.rename(columns = {"high": "High", "low": "Low"}, inplace = True)
+        df_lows = self.fractals_low_loop(df_all)
+        df_lows = self.fractals_low_loop(df_lows)
+        df.rename(columns = {"High": "high", "Low": "low"}, inplace = True)
+        mins = df_lows.index.tolist()
+
+        wa = WaveAnalyzer(df=df, verbose=False)
+        wave_options_impulse = WaveOptionsGenerator5(up_to=1)  # generates WaveOptions up to [15, 15, 15, 15, 15]
+        impulse = Impulse('impulse')
+        rules_to_check = [impulse]
+        wavepatterns_up = set()
+
+        for i in mins:
+            for new_option_impulse in wave_options_impulse.options_sorted:
+                waves_up = wa.find_impulsive_wave(idx_start=i, wave_config=new_option_impulse.values)
+
+                if waves_up:
+                    wavepattern_up = WavePattern(waves_up, verbose=True)
+
+                    for rule in rules_to_check:
+
+                        if wavepattern_up.check_rule(rule):
+                            if wavepattern_up in wavepatterns_up:
+                                continue
+                            else:
+                                wavepatterns_up.add(wavepattern_up)
+                                if not self.check_has_same_wavepattern(self.wv, wavepattern_up):
+                                    self.wv.append([[i, wavepattern_up.dates[0], id(wavepattern_up), wavepattern_up], []])
+                                # print(f'{rule.name} found: {new_option_impulse.values}')
+                                # plot_pattern(df=df, wave_pattern=wavepattern_up, title=str(new_option_impulse))
+        
