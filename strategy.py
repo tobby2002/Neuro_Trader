@@ -345,89 +345,48 @@ class Wave45(Bot):
 
     def __init__(self):
         # set time frame here
-        Bot.__init__(self, '15m')
+        Bot.__init__(self, '5m')
 
     def options(self):
         return {}
 
     def strategy(self, datetime, open, close, high, low, volume, df, wv):
-        print('start...')
         long_entry_condition = False
-        r = None
-        try:
-            r = self.wave_finder(df)
-        except Exception as e:
-            print('wave_finder')
-            print(e)
-            pass
+        short_entry_condition = False
+        lot = self.exchange.get_lot()
 
-        if r:
-            w = r[-1]
-            high = w.high
-            low = w.low
-            # idx_end = w.idx_end
-            # idx_start = w.idx_start
-            # height = high - low
-            # w_end = w.dates[-1]
-            # w_start = w.dates[0]
+        if len(self.wv) == 0:
+            print('wave_finder...')
+            self.wave_finder(df)
+        if len(self.wv) > 0:
+            position = True if self.wv[-1][-1] else False
+            w = self.wv[-1][0][-1]
             start = w.waves['wave4'].low
-            # date = w.waves['wave4'].date_end
-            #
-            # d = df
-            # dates = datetime
-            # closes = close
-            # lows = low
-            # highs = high
-            position = False
 
-            # if w.high != w.high and w.low != w.low:
-            #     position = True
+            if position and low[0] < w.low:
+                self.wv = list()
+                print('ls out')
+                # self.exchange.entry("Short", True, lot)
+                self.exchange.close_all()
+                short_entry_condition = True
 
-            # get lot or set your own value which will be used to size orders
-            # careful default lot is about 20x your account size !!!
-            lot = self.exchange.get_lot()
+            elif position and high[0] > w.high:
+                self.wv = list()
+                print('tp out')
+                # self.exchange.entry("Short", True, lot)
+                self.exchange.close_all()
+                short_entry_condition = True
 
-            # indicator lengths
-            fast_len = self.input('fast_len', int, 20)
-            slow_len = self.input('slow_len', int, 100)
-
-            # setting indicators, they usually take source and length as arguments
-            sma1 = sma(close, fast_len)
-            sma2 = sma(close, slow_len)
-
-            # entry conditions
-            long_entry_condition = crossover(sma1, sma2)
-            # short_entry_condition = crossunder(sma1, sma2)
-
-            if position is not True and close[-1] <= start:
+            if not position and close[0] <= start:
                 long_entry_condition = True
-
-            # setting a simple stop loss and profit target in % using built-in simple profit take and stop loss implementation
-            # which is placing the sl and tp automatically after entering a position
-            # self.exchange.sltplimit(profit_long=1.25, profit_short=1.25, stop_long=1, stop_short=1.1, round_decimals=0)
-
-            # example of calculation of stop loss price 0.8% round on 2 decimals hardcoded inside this class
-            # sl_long = round(close[-1] - close[-1]*0.8/100, 2)
-            # sl_short = round(close[-1] - close[-1]*0.8/100, 2)
-
-            # order execution logic
-            if long_entry_condition:
-                # entry - True means long for every other order other than entry use self.exchange.order() function
-                self.exchange.entry("Long", True, lot / 20)
-                tp_long = high
-                self.exchange.order("TPLong", False, lot/20, limit=tp_long, reduce_only=True, when=False)
-                sl_short = low
-                self.exchange.order("SLLong", False, lot/20, stop=sl_short, reduce_only=True, when=False)
+                self.exchange.entry("Long", True, lot)
                 print('long_entry_condition')
-            # if short_entry_condition and position:
-            #     # entry - False means short for every other order other than entry use self.exchange.order() function
-            #     self.exchange.entry("Short", False, lot / 20)
-            #     # stop loss hardcoded inside this class
-            #     # self.exchange.order("SLShort", True, lot/20, stop=sl_short, reduce_only=True, when=False)
+                i = [close[0], w.low, w.high]
+                print('entry info: %s' % i)
+                self.wv[-1][-1] = i
 
-        # storing history for entry signals, you can store any variable this way to keep historical values
         self.long_entry_signal_history.append(long_entry_condition)
-        # self.short_entry_signal_history.append(short_entry_condition)
+        self.short_entry_signal_history.append(short_entry_condition)
 
         # OHLCV and indicator data, you can access history using list index
         # log indicator values
@@ -448,11 +407,3 @@ class Wave45(Bot):
         # log history entry signals
         # logger.info(f"long_entry_hist: {self.long_entry_signal_history}")
         # logger.info(f"short_entry_hist: {self.short_entry_signal_history}")
-        
-def check_has_same_wavepattern(w_l, wavepattern_up):
-    for i in w_l:
-        eq_dates = np.array_equal(np.array(wavepattern_up.dates), np.array(i[-1].dates))
-        eq_values = np.array_equal(np.array(wavepattern_up.values), np.array(i[-1].values))
-        if eq_dates and eq_values:
-            return True
-    return False
