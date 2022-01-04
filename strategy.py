@@ -451,7 +451,8 @@ class Wave45(Bot):
         
 def check_has_same_wavepattern(w_l, wavepattern_up):
     for i in w_l:
-        eq = np.array_equal(np.array(wavepattern_up.dates), np.array(i[-1].dates))
-        if eq:
+        eq_dates = np.array_equal(np.array(wavepattern_up.dates), np.array(i[-1].dates))
+        eq_values = np.array_equal(np.array(wavepattern_up.values), np.array(i[-1].values))
+        if eq_dates and eq_values:
             return True
-    return False        
+    return False
