@@ -448,3 +448,10 @@ class Wave45(Bot):
         # log history entry signals
         # logger.info(f"long_entry_hist: {self.long_entry_signal_history}")
         # logger.info(f"short_entry_hist: {self.short_entry_signal_history}")
+        
+def check_has_same_wavepattern(w_l, wavepattern_up):
+    for i in w_l:
+        eq = np.array_equal(np.array(wavepattern_up.dates), np.array(i[-1].dates))
+        if eq:
+            return True
+    return False        
