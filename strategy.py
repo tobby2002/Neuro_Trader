@@ -345,7 +345,7 @@ class Wave45(Bot):
 
     def __init__(self):
         # set time frame here
-        Bot.__init__(self, '5m')
+        Bot.__init__(self, '1m')
 
     def options(self):
         return {}
@@ -366,22 +366,20 @@ class Wave45(Bot):
             if position and low[0] < w.low:
                 self.wv = list()
                 print('ls out')
-                # self.exchange.entry("Short", True, lot)
                 self.exchange.close_all()
                 short_entry_condition = True
 
             elif position and high[0] > w.high:
                 self.wv = list()
                 print('tp out')
-                # self.exchange.entry("Short", True, lot)
                 self.exchange.close_all()
                 short_entry_condition = True
 
-            if not position and close[0] <= start:
+            if not position and close[0] <= start and lot > 0:
                 long_entry_condition = True
                 self.exchange.entry("Long", True, lot)
                 print('long_entry_condition')
-                i = [close[0], w.low, w.high]
+                i = [close[0], start, w.low, w.high]
                 print('entry info: %s' % i)
                 self.wv[-1][-1] = i
 
