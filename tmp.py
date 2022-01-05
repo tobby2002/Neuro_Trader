@@ -15,19 +15,19 @@ def check_has_same_wavepattern_df(df, wavepattern_up):
             return True
     return False
 
-def entry_wave_df(df, df_ohlcv=None):
-    r_df = None
+def agent_filter_wave_df(df_wave, symbol, timepoint, df_flow):
+    f1 = df_wave['symbol'] == symbol
+    f2 = df_wave['time'] >= timepoint
+    df_wave_f = df_wave[f1 & f2]
+    return df_wave_f
 
-    return df
+df_wave = pd.DataFrame([], columns=['id', 'symbol', 'time', 'low', 'w1', 'w2', 'w3', 'w4', 'high', 'wave', 'position', 'valid'])
 
-dfw = pd.DataFrame([], columns=['id', 'symbol', 'time', 'low', 'w1', 'w2', 'w3', 'w4', 'high', 'wave', 'position'])
-
-
+w_l = list()
 
 
                             wavepatterns_up.add(wavepattern_up)
-                            # if not check_has_same_wavepattern(w_l, wavepattern_up):
-                            if not check_has_same_wavepattern_df(dfw, wavepattern_up):
+                            if not check_has_same_wavepattern_df(df_wave, wavepattern_up):
 
                                 w_info = [id(wavepattern_up),
                                           symbol,
@@ -38,7 +38,23 @@ dfw = pd.DataFrame([], columns=['id', 'symbol', 'time', 'low', 'w1', 'w2', 'w3',
                                           wavepattern_up.values[5],
                                           wavepattern_up.values[7],
                                           wavepattern_up.high,
-                                          wavepattern_up, False]
+                                          wavepattern_up,
+                                          False,
+                                          True
+                                          ]
                                 w_l.append(w_info)
-                                dfw = dfw.append(pd.DataFrame([w_info], columns=dfw.columns), ignore_index=True)
+                                df_wave = df_wave.append(pd.DataFrame([w_info], columns=df_wave.columns), ignore_index=True)
+                                print(f'{rule.name} found: {new_option_impulse.values}')
+                            
+
+
+timepoint = '2018-05-29'
+symbol = 'AMD.csv'
+df_flow = None
+df_w_filterd = agent_filter_wave_df(df_wave, symbol, timepoint, df_flow)
+print(df_w_filterd)
+                            
+                            
+                            
+                            
         
