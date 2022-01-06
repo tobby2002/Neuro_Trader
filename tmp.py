@@ -38,6 +38,7 @@ def check_in_range(df_symbol_date, nowpoint, time, low, high):
     return r
 
 
+
 def agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, df_symbols):
     c1 = df_wave['symbol'] == symbol
     c2 = df_wave['time'] <= nowpoint
@@ -47,18 +48,13 @@ def agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, df_symbols):
     df_symbol = df_symbol[df_symbol['Date'] <= nowpoint]
     df_symbol_date = df_symbol.set_index(['Date'])
     if len(df_wave_f) > 0:
-
         # filter
         df_wave_f.loc[:, ('valid')] = df_wave_f.apply(
             lambda x: 0 if check_in_range(df_symbol_date, nowpoint, x['time'], x['low'], x['high']) else 1,
             axis=1)
-
         # update
-        df_wave_f
-
-        # df_wave_f['value'] = np.where(df_wave_f.index > 20000, 0, df['value'])
-    c3 = df_wave_f['valid'] == 0
-    return df_wave_f[c3], df_wave
+        df_wave.loc[df_wave['id'].isin(df_wave_f['id'].tolist()), ['valid']] = 1
+    return df_wave_f, df_wave
 
 df_wave = pd.DataFrame([], columns=['id', 'symbol', 'time', 'low', 'w1', 'w2', 'w3', 'w4', 'high', 'wave', 'position', 'valid'])
 
@@ -137,8 +133,3 @@ nowpoint = '2021-12-25'
 symbol = 'INFY.csv'
 df_w_filterd, df_wave = agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, df_symbols)
 print(df_w_filterd, df_wave)
-
-                            
-                            
-                            
-        
