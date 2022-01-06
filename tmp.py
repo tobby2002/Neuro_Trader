@@ -38,13 +38,12 @@ def check_in_range(df_symbol_date, nowpoint, time, low, high):
     return r
 
 
-
-def agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, df_symbols):
+def agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, symbols_d):
     c1 = df_wave['symbol'] == symbol
     c2 = df_wave['time'] <= nowpoint
     df_wave_f = df_wave[c1 & c2]
 
-    df_symbol = df_symbols[symbol]
+    df_symbol = symbols_d[symbol]
     df_symbol = df_symbol[df_symbol['Date'] <= nowpoint]
     df_symbol_date = df_symbol.set_index(['Date'])
     if len(df_wave_f) > 0:
@@ -54,16 +53,18 @@ def agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, df_symbols):
             axis=1)
         # update
         df_wave.loc[df_wave['id'].isin(df_wave_f['id'].tolist()), ['valid']] = 1
-    return df_wave_f, df_wave
+    return df_wave_f
 
 df_wave = pd.DataFrame([], columns=['id', 'symbol', 'time', 'low', 'w1', 'w2', 'w3', 'w4', 'high', 'wave', 'position', 'valid'])
 
 w_l = list()
-df_symbols = dict()
+symbols_d = dict()
 
 for symbol in ['AMD.csv', 'btc-usd_1d.csv', 'FB.csv', 'INFY.csv', 'MONDY.csv', 'MTDR.csv']:
     df = pd.read_csv(symbol)
-    df_symbols[symbol] = df
+    symbols_d[symbol] = df
+
+
 
     idx_start = np.argmin(np.array(list(df['Low'])))
     idx_start_high = np.argmin(np.array(list(df['High'])))
@@ -131,5 +132,5 @@ for symbol in ['AMD.csv', 'btc-usd_1d.csv', 'FB.csv', 'INFY.csv', 'MONDY.csv', '
 
 nowpoint = '2021-12-25'
 symbol = 'INFY.csv'
-df_w_filterd, df_wave = agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, df_symbols)
-print(df_w_filterd, df_wave)
+df_w_filtered = agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, symbols_d)
+print(df_w_filtered, df_wave)
