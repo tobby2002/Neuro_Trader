@@ -57,15 +57,23 @@ def agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, symbols_d):
 
 df_wave = pd.DataFrame([], columns=['id', 'symbol', 'time', 'low', 'w1', 'w2', 'w3', 'w4', 'high', 'wave', 'position', 'valid'])
 
+
+from datetime import date, timedelta
+
+sdate = date(2019, 3, 22)   # start date
+edate = date(2019, 4, 9)   # end date
+
+date_l = pd.date_range(sdate, edate-timedelta(days=1), freq='d')
+print(date_l.tolist())
+
 w_l = list()
 symbols_d = dict()
-
-for symbol in ['AMD.csv', 'btc-usd_1d.csv', 'FB.csv', 'INFY.csv', 'MONDY.csv', 'MTDR.csv']:
+symbols = ['AMD.csv', 'btc-usd_1d.csv', 'FB.csv', 'INFY.csv', 'MONDY.csv', 'MTDR.csv']
+for symbol in symbols:
     df = pd.read_csv(symbol)
     symbols_d[symbol] = df
 
-
-
+for date in date_l.tolist():
     idx_start = np.argmin(np.array(list(df['Low'])))
     idx_start_high = np.argmin(np.array(list(df['High'])))
 
@@ -134,3 +142,4 @@ nowpoint = '2021-12-25'
 symbol = 'INFY.csv'
 df_w_filtered = agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, symbols_d)
 print(df_w_filtered, df_wave)
+
