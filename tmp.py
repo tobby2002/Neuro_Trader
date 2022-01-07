@@ -6,10 +6,14 @@ from models.WaveOptions import WaveOptionsGenerator5
 from models.helpers import plot_pattern
 import pandas as pd
 import numpy as np
+import json
+from pytz import UTC
+from datetime import datetime, timezone
+from datetime import date, timedelta
 
 
-def check_has_same_wavepattern(w_l, wavepattern_up):
-    for i in w_l:
+def check_has_same_wavepattern(l, wavepattern_up):
+    for i in l:
         eq_dates = np.array_equal(np.array(wavepattern_up.dates), np.array(i[2].dates))
         eq_values = np.array_equal(np.array(wavepattern_up.values), np.array(i[2].values))
         if eq_dates and eq_values:
@@ -18,8 +22,8 @@ def check_has_same_wavepattern(w_l, wavepattern_up):
 
 
 def check_has_same_wavepattern_df(df, wavepattern_up):
-    w_l = df.wave.tolist()
-    for i in w_l:
+    l = df.wave.tolist()
+    for i in l:
         eq_dates = np.array_equal(np.array(wavepattern_up.dates), np.array(i.dates))
         eq_values = np.array_equal(np.array(wavepattern_up.values), np.array(i.values))
         if eq_dates and eq_values:
@@ -55,91 +59,128 @@ def agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, symbols_d):
         df_wave.loc[df_wave['id'].isin(df_wave_f['id'].tolist()), ['valid']] = 1
     return df_wave_f
 
+
+
+
+################
+# init
+################
+symbols = ['AMD', 'btc-usd_1d', 'FB', 'INFY', 'MONDY', 'MTDR']
 df_wave = pd.DataFrame([], columns=['id', 'symbol', 'time', 'low', 'w1', 'w2', 'w3', 'w4', 'high', 'wave', 'position', 'valid'])
-
-
-from datetime import date, timedelta
-
 sdate = date(2019, 3, 22)   # start date
 edate = date(2019, 4, 9)   # end date
+up_to_count = 5
+nowpoint = '2018-12-25'
+symbols_d = dict()
 
+################
+# data collector
+################
+def data_collector(symbols):
+    for symbol in symbols:
+        symbols_d[symbol] = pd.read_csv(symbol+'.csv')
+    return symbols_d
+
+################
+# wave analyzer
+################
+
+def wave_analyzer(df_wave, symbols, symbols_d, up_to_count=None, startpoint=None, nowpoint=None, window=1000):
+    for symbol in symbols:
+        df = symbols_d[symbol]
+        if nowpoint:
+            c = df['Date'] <= nowpoint
+            if startpoint:
+                c = c & df['Date'] >= startpoint
+            df = df[c]
+        if df.size > window:
+            df = df.iloc[-window:]
+        idx_start = np.argmin(np.array(list(df['Low'])))
+        idx_start_high = np.argmin(np.array(list(df['High'])))
+        wa = WaveAnalyzer(df=df, verbose=False)
+        up_to_count = up_to_count if up_to_count else 1
+        wave_options_impulse = WaveOptionsGenerator5(up_to=up_to_count)  # generates WaveOptions up to [15, 15, 15, 15, 15]
+
+        impulse = Impulse('impulse')
+        rules_to_check = [impulse]
+        # rules_to_check = [impulse, leading_diagonal]
+        # correction = Correction('Correction')
+        # rules_to_check = [correction]
+
+        print(f'Start at idx: {idx_start}')
+        print(f"will run up to {wave_options_impulse.number / 1e6}M combinations.")
+
+        # set up a set to store already found wave counts
+        # it can be the case, that 2 WaveOptions lead to the same WavePattern.
+        # This can be seen in a chart, where for example we try to skip more maxima as there are. In such a case
+        # e.g. [1,2,3,4,5] and [1,2,3,4,10] will lead to the same WavePattern (has same sub-wave structure, same begin / end,
+        # same high / low etc.
+        # If we find the same WavePattern, we skip and do not plot it
+
+        wavepatterns_up = set()
+        # loop over all combinations of wave options [i,j,k,l,m] for impulsive waves sorted from small, e.g.  [0,1,...] to
+        # large e.g. [3,2, ...]
+
+        for new_option_impulse in wave_options_impulse.options_sorted:
+            waves_up = wa.find_impulsive_wave(idx_start=idx_start, wave_config=new_option_impulse.values)
+            if waves_up:
+                wavepattern_up = WavePattern(waves_up, verbose=True)
+                for rule in rules_to_check:
+                    if wavepattern_up.check_rule(rule):
+                        if wavepattern_up in wavepatterns_up:
+                            print('################################')
+                            print('same wavepattern id:%s' % id(wavepattern_up))
+                            print('################################')
+                            continue
+                        else:
+                            wavepatterns_up.add(wavepattern_up)
+                            if not check_has_same_wavepattern_df(df_wave, wavepattern_up):
+                                w_info = [id(wavepattern_up),
+                                          symbol,
+                                          wavepattern_up.dates[0],
+                                          wavepattern_up.low,
+                                          wavepattern_up.values[1],
+                                          wavepattern_up.values[3],
+                                          wavepattern_up.values[5],
+                                          wavepattern_up.values[7],
+                                          wavepattern_up.high,
+                                          wavepattern_up,
+                                          # wavepattern_up.__dict__,
+                                          # json.dumps(wavepattern_up.__dict__),
+                                          0,
+                                          0
+                                          ]
+                                df_wave = df_wave.append(pd.DataFrame([w_info], columns=df_wave.columns), ignore_index=True)
+                                print('len(df_wave):%s' % len(df_wave))
+                                print(f'{rule.name} found: {new_option_impulse.values}')
+                            # plot_pattern(df=df, wave_pattern=wavepattern_up, title=symbol + str(new_option_impulse))
+        return df_wave
+
+
+################
+# wave manager
+################
+def wave_manager(df_wave, symbols, symbols_d, nowpoint=None):
+    if nowpoint is None:
+        nowpoint = str(datetime.now().astimezone(UTC))
+        # now_time = datetime.now(timezone.utc)
+    wave_standby_d = dict()
+    for symbol in symbols:
+        df_wave_symbol_standby = agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, symbols_d)
+        wave_standby_d[symbol] = df_wave_symbol_standby
+    print(wave_standby_d, df_wave)
+    return wave_standby_d, df_wave
+
+
+symbols_d = data_collector(symbols)
+df_wave = wave_analyzer(df_wave, symbols, symbols_d, up_to_count=up_to_count, nowpoint=nowpoint)
+wave_standby_d, df_wave = wave_manager(df_wave, symbols, symbols_d, nowpoint=nowpoint)
+
+################
+# trader
+################
 date_l = pd.date_range(sdate, edate-timedelta(days=1), freq='d')
 print(date_l.tolist())
-
-w_l = list()
-symbols_d = dict()
-symbols = ['AMD.csv', 'btc-usd_1d.csv', 'FB.csv', 'INFY.csv', 'MONDY.csv', 'MTDR.csv']
-for symbol in symbols:
-    df = pd.read_csv(symbol)
-    symbols_d[symbol] = df
-
-for date in date_l.tolist():
-    idx_start = np.argmin(np.array(list(df['Low'])))
-    idx_start_high = np.argmin(np.array(list(df['High'])))
-
-    wa = WaveAnalyzer(df=df, verbose=False)
-    wave_options_impulse = WaveOptionsGenerator5(up_to=5)  # generates WaveOptions up to [15, 15, 15, 15, 15]
-
-    impulse = Impulse('impulse')
-    rules_to_check = [impulse]
-    # rules_to_check = [impulse, leading_diagonal]
-
-    # correction = Correction('Correction')
-    # rules_to_check = [correction]
-
-    print(f'Start at idx: {idx_start}')
-    print(f"will run up to {wave_options_impulse.number / 1e6}M combinations.")
-
-    # set up a set to store already found wave counts
-    # it can be the case, that 2 WaveOptions lead to the same WavePattern.
-    # This can be seen in a chart, where for example we try to skip more maxima as there are. In such a case
-    # e.g. [1,2,3,4,5] and [1,2,3,4,10] will lead to the same WavePattern (has same sub-wave structure, same begin / end,
-    # same high / low etc.
-    # If we find the same WavePattern, we skip and do not plot it
-
-    wavepatterns_up = set()
-
-    # loop over all combinations of wave options [i,j,k,l,m] for impulsive waves sorted from small, e.g.  [0,1,...] to
-    # large e.g. [3,2, ...]
-
-    for new_option_impulse in wave_options_impulse.options_sorted:
-
-        waves_up = wa.find_impulsive_wave(idx_start=idx_start, wave_config=new_option_impulse.values)
-
-        if waves_up:
-            wavepattern_up = WavePattern(waves_up, verbose=True)
-            # print('---%s' % id(wavepattern_up))
-
-            for rule in rules_to_check:
-
-                if wavepattern_up.check_rule(rule):
-                    if wavepattern_up in wavepatterns_up:
-                        # print(id(wavepattern_up))
-                        continue
-                    else:
-                        wavepatterns_up.add(wavepattern_up)
-                        if not check_has_same_wavepattern_df(df_wave, wavepattern_up):
-
-                            w_info = [id(wavepattern_up),
-                                      symbol,
-                                      wavepattern_up.dates[0],
-                                      wavepattern_up.low,
-                                      wavepattern_up.values[1],
-                                      wavepattern_up.values[3],
-                                      wavepattern_up.values[5],
-                                      wavepattern_up.values[7],
-                                      wavepattern_up.high,
-                                      wavepattern_up,
-                                      0,
-                                      0
-                                      ]
-                            w_l.append(w_info)
-                            df_wave = df_wave.append(pd.DataFrame([w_info], columns=df_wave.columns), ignore_index=True)
-                            print(f'{rule.name} found: {new_option_impulse.values}')
-                        # plot_pattern(df=df, wave_pattern=wavepattern_up, title=symbol + str(new_option_impulse))
-
-nowpoint = '2021-12-25'
-symbol = 'INFY.csv'
-df_w_filtered = agent_filter_and_update_wave_df(df_wave, symbol, nowpoint, symbols_d)
-print(df_w_filtered, df_wave)
-
+for d in date_l.tolist():
+    print(d)
+    pass
