@@ -83,7 +83,7 @@ class DataManagerfeeder:
     def get_conn(self):
         dbpath = db_dir
         try:
-            conn = sqlite3.connect(dbpath)
+            conn = sqlite3.connect(dbpath, timeout=10)
             return conn
         except Error as e:
             print(e)
@@ -204,11 +204,12 @@ class DataManagerfeeder:
     def create_wave(self, conn):
         cur = conn.cursor()
         '''
-        ['id', 'symbol', 'timeframe', 'type', 'time', 'low', 'w1', 'w2', 'w3', 'w4', 'high', 'wave', 'position', 'valid']
+        ['id', 'symbol', 'timeframe', 'type', 'time', 'low', 'w1', 'w2', 'w3', 'w4', 'high', 'wave', 'position', 'status']
         CREATE TABLE wave(
             id TEXT,
             symbol TEXT,
-            timeframe TEXT,
+            bin_size NUMERIC,
+            bin_time TEXT,
             type TEXT,            
             time TIMESTAMP,
             low REAL,
@@ -219,7 +220,7 @@ class DataManagerfeeder:
             high REAL,
             wave TEXT,
             position NUMERIC,
-            valid NUMERIC
+            status NUMERIC
         );
 
         '''
@@ -231,7 +232,8 @@ class DataManagerfeeder:
         CREATE TABLE wave(
             id TEXT,
             symbol TEXT,
-            timeframe TEXT,
+            bin_size NUMERIC,
+            bin_time TEXT,
             type TEXT,
             time TIMESTAMP,
             low REAL,
@@ -242,7 +244,7 @@ class DataManagerfeeder:
             high REAL,
             wave TEXT,
             position NUMERIC,
-            valid NUMERIC
+            status NUMERIC
         );
         """)
         print('created table : wave')
@@ -250,28 +252,93 @@ class DataManagerfeeder:
         # conn.close()
 
     def load_df_wave(self, conn):
-        cur = conn.cursor()
-        query = cur.execute("SELECT * From wave")
-        cols = [column[0] for column in query.description]
-        query_df = pd.DataFrame.from_records(data=query.fetchall(), columns=cols)
+        try:
+            cur = conn.cursor()
+            query = cur.execute("SELECT * From wave")
+            cols = [column[0] for column in query.description]
+            query_df = pd.DataFrame.from_records(data=query.fetchall(), columns=cols)
+        except Exception as e:
+            print('load_df_wave')
+            print(e)
+            print('create_wave start')
+            self.create_wave(conn)
+            conn.commit()
+            query_df = self.load_df_wave(conn)
         return query_df
 
     def save_wave(self, w_info, conn):
-        c = conn.cursor()
-        col = [w_info[0], w_info[1], w_info[2], w_info[3], w_info[4], w_info[5], w_info[6], w_info[7], w_info[8], w_info[9], \
-        w_info[10], w_info[11], w_info[12], w_info[13]]
-        c.execute('INSERT INTO wave(id, symbol, timeframe, "type", "time", low, w1, w2, w3, w4, high, wave, "position", valid ) VALUES (?, ?,?,?,?,?,?,?,?,?,?,?,?,?)', col)
+        try:
+            c = conn.cursor()
+            col = [w_info[0], w_info[1], w_info[2], w_info[3], w_info[4], w_info[5], w_info[6], w_info[7], w_info[8], w_info[9], \
+            w_info[10], w_info[11], w_info[12], w_info[13], w_info[14]]
+            c.execute('INSERT INTO wave(id, symbol, bin_size, bin_time, "type", "time", low, w1, w2, w3, w4, high, wave, "position", status ) VALUES (?,?,?, ?,?,?,?,?,?,?,?,?,?,?,?)', col)
+        except Exception as e:
+            print('save_wave')
+            print(e)
+            pass
         conn.commit()
 
+    def update_wave_init(self, conn):
+        try:
+            c = conn.cursor()
+            c.execute("UPDATE wave SET position=0")
+            c.execute("UPDATE wave SET status=0")
+            conn.commit()
+        except Exception as e:
+            print('update_wave')
+            print(e)
+            return False
+        return True
 
-    def load_df_wave_startpoint_nowpoint_window(self, conn, timeframe, type, startpoint, nowpoint, window):
+    def update_wave(self, w_info, columnidx, conn):
+        try:
+            c = conn.cursor()
+            columns = w_info.columns.tolist()
+            values = w_info.values.tolist()
+            for i in values:
+                sql = "UPDATE wave SET %s=%s WHERE id = %s" % (columns[columnidx], i[columnidx], i[0])
+                c.execute(sql)
+            conn.commit()
+        except Exception as e:
+            print('update_wave')
+            print(e)
+            return False
+        return True
+
+    def update_wave_key_value(self, id, key, value, conn):
+        try:
+            c = conn.cursor()
+            c.execute("UPDATE wave SET %s=%s WHERE id = %s" % (key, value, id))
+            conn.commit()
+        except Exception as e:
+            print('update_wave')
+            print(e)
+            return False
+        return True
+
+
+    def load_df_wave_startpoint_endpoint_window(self, conn, bin_size, bin_time, type, startpoint=None, endpoint=None, window=None):
         cur = conn.cursor()
-        window = window * int(re.sub(r'[^0-9]', '', timeframe))
-        window_start_date = str((pd.to_datetime(nowpoint) - pd.Timedelta(str(window) + ' minutes')))
-        if startpoint:
-            sql = "SELECT * From wave WHERE timeframe = '%s' and type = '%s'  and time >= '%s' and time >= '%s' and time <= '%s'" % (timeframe, type, window_start_date, startpoint, nowpoint)
+        if bin_time == 'm':
+            bin_unit = 'minutes'
+        elif bin_time == 'h':
+            bin_unit = 'hours'
+        elif bin_time == 'd':
+            bin_unit = 'days'
+        window = window * bin_size
+        window_start_date = str((pd.to_datetime(endpoint) - pd.Timedelta(str(window) + ' ' + bin_unit)))
+
+        if startpoint and endpoint:
+            sql = "SELECT * From %s WHERE bin_size = '%s' and bin_time = '%s' and type = '%s'  and time >= '%s' and time <= '%s' " % ('wave', bin_size, bin_time, type, startpoint, endpoint)
+        elif window and endpoint:
+            sql = "SELECT * From %s WHERE bin_size = '%s' and bin_time = '%s' and type = '%s'  and time >= '%s' and time <= '%s' " % ('wave', bin_size, bin_time, type, window_start_date, endpoint)
+        elif endpoint and not startpoint and not window:
+            sql = "SELECT * From %s WHERE bin_size = '%s' and bin_time = '%s' and type = '%s'  and time <= '%s' " % ('wave', bin_size, bin_time, type, endpoint)
+        elif startpoint and not endpoint and not window:
+            sql = "SELECT * From %s WHERE bin_size = '%s' and bin_time = '%s'  and type = '%s'  and time >= '%s' " % ('wave', bin_size, bin_time, type, startpoint)
         else:
-            sql = "SELECT * From wave WHERE timeframe = '%s' and type = '%s'  and time >= '%s' and time <= '%s'" % (timeframe, type, window_start_date, nowpoint)
+            sql = "SELECT * From %s" % ('wave')
+
         query = cur.execute(sql)
         cols = [column[0] for column in query.description]
         query_df = pd.DataFrame.from_records(data=query.fetchall(), columns=cols)
@@ -279,10 +346,8 @@ class DataManagerfeeder:
 
     def truncate_tablename(self, conn, tablename):
         cur = conn.cursor()
-        cur.executescript("""
-        DELETE FROM %s;
-        VACUUM;
-        """ % (tablename))
+        sql = "DELETE From %s" % (tablename)
+        cur.execute(sql)
         conn.commit()
 
     def drop_table(self, conn, exchange, symbol, bin_size):
@@ -359,25 +424,27 @@ class DataManagerfeeder:
         query_df = pd.DataFrame.from_records(data=query.fetchall(), columns=cols)
         return query_df
 
-    def load_df_candle_startpoint_endpoint(self, conn, table, bin_size, startpoint, endpoint, window):
-        cur = conn.cursor()
-        window = window * int(re.sub(r'[^0-9]', '', bin_size))
-        window_start_date = str((pd.to_datetime(endpoint) - pd.Timedelta(str(window) + ' minutes')))
-        if startpoint:
-            sql = "SELECT * From %s_%s WHERE Date >= '%s' and Date >= '%s' and Date <= '%s' " % (table, bin_size, window_start_date, startpoint, endpoint)
-        else:
-            sql = "SELECT * From %s_%s WHERE Date >= '%s' and Date <= '%s' " % (table, bin_size, window_start_date, endpoint)
-        query = cur.execute(sql)
-        cols = [column[0] for column in query.description]
-        query_df = pd.DataFrame.from_records(data=query.fetchall(), columns=cols)
-        return query_df
 
-    def load_df_ohlc_startpoint_nowpoint_window(self, conn, table, bin_size, startpoint, nowpoint, window):
+    def load_df_ohlc_startpoint_endpoint_window(self, conn, table, bin_size, bin_time, startpoint=None, endpoint=None, window=None):
         cur = conn.cursor()
-        if startpoint:
-            sql = "SELECT * From %s_%s WHERE Date >= '%s' and Date <= '%s' ORDER BY ROWID DESC LIMIT %d" % (table, bin_size, startpoint, nowpoint, window)
+        if bin_time == 'm':
+            bin_unit = 'minutes'
+        elif bin_time == 'h':
+            bin_unit = 'hours'
+        elif bin_time == 'd':
+            bin_unit = 'days'
+        window = window * bin_size
+        window_start_date = str((pd.to_datetime(endpoint) - pd.Timedelta(str(window) + ' ' + bin_unit)))
+        if startpoint and endpoint:
+            sql = "SELECT * From %s_%s%s WHERE Date >= '%s' and Date <= '%s' " % (table, str(bin_size), bin_time, startpoint, endpoint)
+        elif window and endpoint:
+            sql = "SELECT * From %s_%s%s WHERE Date >= '%s' and Date <= '%s' " % (table, str(bin_size), bin_time, window_start_date, endpoint)
+        elif endpoint and not startpoint and not window:
+            sql = "SELECT * From %s_%s%s WHERE Date <= '%s' " % (table, str(bin_size), bin_time, endpoint)
+        elif startpoint and not endpoint and not window:
+            sql = "SELECT * From %s_%s%s WHERE Date >= '%s' " % (table, str(bin_size), bin_time, startpoint)
         else:
-            sql = "SELECT * From %s_%s WHERE Date <= '%s' ORDER BY ROWID DESC LIMIT %d" % (table, bin_size, nowpoint, window)
+            sql = "SELECT * From %s_%s%s " % (table, str(bin_size), bin_time)
         query = cur.execute(sql)
         cols = [column[0] for column in query.description]
         query_df = pd.DataFrame.from_records(data=query.fetchall(), columns=cols)
@@ -681,21 +748,24 @@ if __name__ == "__main__":
 
     ########################################
     # create create_wave
-    # conn = dm.get_conn()
-    # dm.create_wave(conn)
-    # conn.commit()
-    # conn.close()
+    ########################################
+    conn = dm.get_conn()
+    dm.create_wave(conn)
+    conn.commit()
+    conn.close()
 
     ########################################
+    # init candles
+    ########################################
     # exchange = 'binance_futures'
-    past_days = 1
-    timeframe = 1  # 1, 5, 15
-    timeunit = 'm'
-    bin_size = str(timeframe) + timeunit
-    start_str = 1
-    end_str = None
-    # if end_str < 0:
-    #     end_str = None
+    # past_days = 1
+    # timeframe = 1  # 1, 5, 15
+    # timeunit = 'm'
+    # bin_size = str(timeframe) + timeunit
+    # start_str = 102
+    # end_str = None
+    # # if end_str < 0:
+    # #     end_str = None
     # data_init(dm, symbols, exchange, bin_size, start_str, end_str, None, futures)
 
 
