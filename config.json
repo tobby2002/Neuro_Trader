@@ -18,7 +18,7 @@
     "low_target_w2": false,
 
     "_period": ["period_days_ago:30 --> 30 days ago", "period_days_ago_till:0 --> now", "period_interval:1 per 1day"],
-    "exchange": "binance_futures",
+    "exchange": "BYBIT",
     "timeframe": 1,
     "period_days_ago": 1,
     "period_days_ago_till": 0,
@@ -35,7 +35,7 @@
     "h_fibo": 0,
     "l_fibo": 0,
     "plotview": false,
-    "printout": true
+    "printout": false
   },
   "symbols": {
     "binance_futures": [
