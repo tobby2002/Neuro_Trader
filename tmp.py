@@ -184,3 +184,60 @@ print(date_l.tolist())
 for d in date_l.tolist():
     print(d)
     pass
+
+
+
+https://stackoverflow.com/questions/69184604/bybit-api-is-there-a-way-to-place-take-profit-stop-loss-orders-after-a-openin
+    
+    
+    Yes, it is possible to attach these orders after entering a position. In the docs they reference set stop, and this is also included in the test.py doc page within the Bybit python install
+
+here is the link to the docs
+
+Bybit Set Stop
+
+Here is what a stop and TP would look like for a LONG position. Please note that for a long we set what our current pos is for the side argument. (BUY)
+
+# Stop Loss
+print(client.LinearPositions.LinearPositions_tradingStop(
+    symbol="BTCUSDT", 
+    side="Buy", 
+    stop_loss=41000).result())
+
+# Take profit
+print(client.LinearPositions.LinearPositions_tradingStop(
+    symbol="BTCUSDT", 
+    side="Buy", 
+    take_profit=49000).result())
+Additional note: TP orders are conditional orders, meaning they are sent to the order book once triggered, which results in a market order. If you already know your target level, a limit order may be more suitable. This will go to your active orders, which you will have to cancel. We use a sell argument for this one:
+
+# Limit order
+print(client.LinearOrder.LinearOrder_new(
+    side="Sell",
+    symbol="BTCUSDT",
+    order_type="Limit",
+    qty=0.001,
+    price=49000,
+    time_in_force="GoodTillCancel",
+    reduce_only=True, 
+    close_on_trigger=False).result())
+Cheers my friend and good luck with your coding and trading!
+
+
+bybit python Close On Trigger Order?
+
+
+Another way to is to listen to websocket data. What I do is I subscribe to "execution" topic. This way, every time your order gets executed you receive an event with all the info about the trade. Then, you can have a callback function that places a trade for you.
+
+Here's the link to the api: https://bybit-exchange.github.io/docs/inverse/#t-websocketexecution
+
+Here's how to subscribe:
+
+enter image description here
+
+Here's the sample response:
+
+enter image description here
+
+Share
+Follow
