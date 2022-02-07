@@ -1,0 +1,458 @@
+2222.txt
+/Users/neo1/PycharmProjects/cryptofeed/venv/bin/python /Applications/PyCharm.app/Contents/helpers/pydev/pydevd.py --cmd-line --multiproc --qt-support=auto --client 127.0.0.1 --port 54586 --file /Users/neo1/PycharmProjects/cryptofeed/runtrade.py
+pydev debugger: process 35073 is connecting
+
+Connected to pydev debugger (build 192.7142.79)
+110 ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'NEOUSDT', 'LTCUSDT', 'QTUMUSDT', 'ADAUSDT', 'XRPUSDT', 'EOSUSDT', 'IOTAUSDT', 'XLMUSDT', 'TRXUSDT', 'ETCUSDT', 'VETUSDT', 'LINKUSDT', 'WAVESUSDT', 'ZILUSDT', 'BATUSDT', 'XMRUSDT', 'ZECUSDT', 'IOSTUSDT', 'CELRUSDT', 'DASHUSDT', 'OMGUSDT', 'THETAUSDT', 'ENJUSDT', 'MATICUSDT', 'ATOMUSDT', 'ONEUSDT', 'FTMUSDT', 'ALGOUSDT', 'DOGEUSDT', 'DUSKUSDT', 'ANKRUSDT', 'DENTUSDT', 'CVCUSDT', 'CHZUSDT', 'XTZUSDT', 'RENUSDT', 'RVNUSDT', 'HBARUSDT', 'STXUSDT', 'KAVAUSDT', 'IOTXUSDT', 'BCHUSDT', 'FTTUSDT', 'COTIUSDT', 'SOLUSDT', 'CHRUSDT', 'KNCUSDT', 'LRCUSDT', 'COMPUSDT', 'SCUSDT', 'ZENUSDT', 'SNXUSDT', 'SXPUSDT', 'STORJUSDT', 'MANAUSDT', 'YFIUSDT', 'SRMUSDT', 'ANTUSDT', 'CRVUSDT', 'SANDUSDT', 'DOTUSDT', 'LUNAUSDT', 'RSRUSDT', 'SUSHIUSDT', 'KSMUSDT', 'EGLDUSDT', 'RUNEUSDT', 'UNIUSDT', 'AVAXUSDT', 'HNTUSDT', 'AAVEUSDT', 'NEARUSDT', 'FILUSDT', 'AUDIOUSDT', 'CTKUSDT', 'AXSUSDT', 'ROSEUSDT', 'XEMUSDT', 'GRTUSDT', '1INCHUSDT', 'CELOUSDT', 'LITUSDT', 'SFPUSDT', 'ALICEUSDT', 'TLMUSDT', 'SLPUSDT', 'ICPUSDT', 'ARUSDT', 'MASKUSDT', 'LPTUSDT', 'GTCUSDT', 'KEEPUSDT', 'KLAYUSDT', 'C98USDT', 'FLOWUSDT', 'REQUSDT', 'DYDXUSDT', 'GALAUSDT', 'ILVUSDT', 'YGGUSDT', 'ENSUSDT', 'JASMYUSDT', 'RNDRUSDT', 'BICOUSDT', 'PEOPLEUSDT', 'SPELLUSDT', 'IMXUSDT']
+ordersize:[{'BTC': 0.001, 'ETH': 0.01, 'BNB': 0.1, 'NEO': 1.0, 'LTC': 0.1, 'QTUM': 10.0, 'ADA': 10.0, 'XRP': 10.0, 'EOS': 10.0, 'IOTA': 10.0, 'XLM': 10.0, 'TRX': 10.0, 'ETC': 1.0, 'VET': 10.0, 'LINK': 1.0, 'WAVES': 1.0, 'ZIL': 10.0, 'BAT': 10.0, 'XMR': 0.1, 'ZEC': 0.1, 'IOST': 10.0, 'CELR': 10.0, 'DASH': 0.1, 'OMG': 10.0, 'THETA': 10.0, 'ENJ': 10.0, 'MATIC': 10.0, 'ATOM': 1.0, 'ONE': 10.0, 'FTM': 10.0, 'ALGO': 10.0, 'DOGE': 10.0, 'DUSK': 10.0, 'ANKR': 10.0, 'DENT': 10.0, 'CVC': 10.0, 'CHZ': 10.0, 'XTZ': 10.0, 'REN': 10.0, 'RVN': 10.0, 'HBAR': 10.0, 'STX': 10.0, 'KAVA': 10.0, 'IOTX': 10.0, 'BCH': 0.1, 'FTT': 1.0, 'COTI': 10.0, 'SOL': 0.1, 'CHR': 10.0, 'KNC': 10.0, 'LRC': 10.0, 'COMP': 0.1, 'SC': 10.0, 'ZEN': 1.0, 'SNX': 10.0, 'SXP': 10.0, 'STORJ': 10.0, 'MANA': 10.0, 'YFI': 0.001, 'SRM': 10.0, 'ANT': 10.0, 'CRV': 10.0, 'SAND': 10.0, 'DOT': 1.0, 'LUNA': 1.0, 'RSR': 10.0, 'SUSHI': 10.0, 'KSM': 0.1, 'EGLD': 0.1, 'RUNE': 10.0, 'UNI': 1.0, 'AVAX': 1.0, 'HNT': 1.0, 'AAVE': 0.1, 'NEAR': 1.0, 'FIL': 1.0, 'AUDIO': 10.0, 'CTK': 10.0, 'AXS': 1.0, 'ROSE': 10.0, 'XEM': 10.0, 'GRT': 10.0, '1INCH': 10.0, 'CELO': 10.0, 'LIT': 10.0, 'SFP': 10.0, 'ALICE': 10.0, 'TLM': 10.0, 'SLP': 10.0, 'ICP': 1.0, 'AR': 1.0, 'MASK': 10.0, 'LPT': 1.0, 'GTC': 10.0, 'KEEP': 10.0, 'KLAY': 10.0, 'C98': 10.0, 'FLOW': 10.0, 'REQ': 10.0, 'DYDX': 10.0, 'GALA': 10.0, 'ILV': 0.1, 'YGG': 10.0, 'ENS': 1.0, 'JASMY': 10.0, 'RNDR': 10.0, 'BICO': 10.0, 'PEOPLE': 10.0, 'SPELL': 10.0, 'IMX': 10.0}]
+Setting Leverage for  BTCUSDT  before Starting Bot
+Setting Leverage for  ETHUSDT  before Starting Bot
+Setting Leverage for  BNBUSDT  before Starting Bot
+Setting Leverage for  NEOUSDT  before Starting Bot
+Setting Leverage for  LTCUSDT  before Starting Bot
+Setting Leverage for  QTUMUSDT  before Starting Bot
+Setting Leverage for  ADAUSDT  before Starting Bot
+Setting Leverage for  XRPUSDT  before Starting Bot
+Setting Leverage for  EOSUSDT  before Starting Bot
+Setting Leverage for  IOTAUSDT  before Starting Bot
+Setting Leverage for  XLMUSDT  before Starting Bot
+Setting Leverage for  TRXUSDT  before Starting Bot
+Setting Leverage for  ETCUSDT  before Starting Bot
+Setting Leverage for  VETUSDT  before Starting Bot
+Setting Leverage for  LINKUSDT  before Starting Bot
+Setting Leverage for  WAVESUSDT  before Starting Bot
+Setting Leverage for  ZILUSDT  before Starting Bot
+Setting Leverage for  BATUSDT  before Starting Bot
+Setting Leverage for  XMRUSDT  before Starting Bot
+Setting Leverage for  ZECUSDT  before Starting Bot
+Setting Leverage for  IOSTUSDT  before Starting Bot
+Setting Leverage for  CELRUSDT  before Starting Bot
+Setting Leverage for  DASHUSDT  before Starting Bot
+Setting Leverage for  OMGUSDT  before Starting Bot
+Setting Leverage for  THETAUSDT  before Starting Bot
+Setting Leverage for  ENJUSDT  before Starting Bot
+Setting Leverage for  MATICUSDT  before Starting Bot
+Setting Leverage for  ATOMUSDT  before Starting Bot
+Setting Leverage for  ONEUSDT  before Starting Bot
+Setting Leverage for  FTMUSDT  before Starting Bot
+Setting Leverage for  ALGOUSDT  before Starting Bot
+Setting Leverage for  DOGEUSDT  before Starting Bot
+Setting Leverage for  DUSKUSDT  before Starting Bot
+Setting Leverage for  ANKRUSDT  before Starting Bot
+Setting Leverage for  DENTUSDT  before Starting Bot
+Setting Leverage for  CVCUSDT  before Starting Bot
+Setting Leverage for  CHZUSDT  before Starting Bot
+Setting Leverage for  XTZUSDT  before Starting Bot
+Setting Leverage for  RENUSDT  before Starting Bot
+Setting Leverage for  RVNUSDT  before Starting Bot
+Setting Leverage for  HBARUSDT  before Starting Bot
+Setting Leverage for  STXUSDT  before Starting Bot
+Setting Leverage for  KAVAUSDT  before Starting Bot
+Setting Leverage for  IOTXUSDT  before Starting Bot
+Setting Leverage for  BCHUSDT  before Starting Bot
+Setting Leverage for  FTTUSDT  before Starting Bot
+Setting Leverage for  COTIUSDT  before Starting Bot
+Setting Leverage for  SOLUSDT  before Starting Bot
+Setting Leverage for  CHRUSDT  before Starting Bot
+Setting Leverage for  KNCUSDT  before Starting Bot
+Setting Leverage for  LRCUSDT  before Starting Bot
+Setting Leverage for  COMPUSDT  before Starting Bot
+Setting Leverage for  SCUSDT  before Starting Bot
+Setting Leverage for  ZENUSDT  before Starting Bot
+Setting Leverage for  SNXUSDT  before Starting Bot
+Setting Leverage for  SXPUSDT  before Starting Bot
+Setting Leverage for  STORJUSDT  before Starting Bot
+Setting Leverage for  MANAUSDT  before Starting Bot
+Setting Leverage for  YFIUSDT  before Starting Bot
+Setting Leverage for  SRMUSDT  before Starting Bot
+Setting Leverage for  ANTUSDT  before Starting Bot
+Setting Leverage for  CRVUSDT  before Starting Bot
+Setting Leverage for  SANDUSDT  before Starting Bot
+Setting Leverage for  DOTUSDT  before Starting Bot
+Setting Leverage for  LUNAUSDT  before Starting Bot
+Setting Leverage for  RSRUSDT  before Starting Bot
+Setting Leverage for  SUSHIUSDT  before Starting Bot
+Setting Leverage for  KSMUSDT  before Starting Bot
+Setting Leverage for  EGLDUSDT  before Starting Bot
+Setting Leverage for  RUNEUSDT  before Starting Bot
+Setting Leverage for  UNIUSDT  before Starting Bot
+Setting Leverage for  AVAXUSDT  before Starting Bot
+Setting Leverage for  HNTUSDT  before Starting Bot
+Setting Leverage for  AAVEUSDT  before Starting Bot
+Setting Leverage for  NEARUSDT  before Starting Bot
+Setting Leverage for  FILUSDT  before Starting Bot
+Setting Leverage for  AUDIOUSDT  before Starting Bot
+Setting Leverage for  CTKUSDT  before Starting Bot
+Setting Leverage for  AXSUSDT  before Starting Bot
+Setting Leverage for  ROSEUSDT  before Starting Bot
+Setting Leverage for  XEMUSDT  before Starting Bot
+Setting Leverage for  GRTUSDT  before Starting Bot
+Setting Leverage for  1INCHUSDT  before Starting Bot
+Setting Leverage for  CELOUSDT  before Starting Bot
+Setting Leverage for  LITUSDT  before Starting Bot
+Setting Leverage for  SFPUSDT  before Starting Bot
+Setting Leverage for  ALICEUSDT  before Starting Bot
+Setting Leverage for  TLMUSDT  before Starting Bot
+Setting Leverage for  SLPUSDT  before Starting Bot
+Setting Leverage for  ICPUSDT  before Starting Bot
+Setting Leverage for  ARUSDT  before Starting Bot
+Setting Leverage for  MASKUSDT  before Starting Bot
+Setting Leverage for  LPTUSDT  before Starting Bot
+Setting Leverage for  GTCUSDT  before Starting Bot
+Setting Leverage for  KEEPUSDT  before Starting Bot
+Setting Leverage for  KLAYUSDT  before Starting Bot
+Setting Leverage for  C98USDT  before Starting Bot
+Setting Leverage for  FLOWUSDT  before Starting Bot
+Setting Leverage for  REQUSDT  before Starting Bot
+Setting Leverage for  DYDXUSDT  before Starting Bot
+Setting Leverage for  GALAUSDT  before Starting Bot
+Setting Leverage for  ILVUSDT  before Starting Bot
+Setting Leverage for  YGGUSDT  before Starting Bot
+Setting Leverage for  ENSUSDT  before Starting Bot
+Setting Leverage for  JASMYUSDT  before Starting Bot
+Setting Leverage for  RNDRUSDT  before Starting Bot
+Setting Leverage for  BICOUSDT  before Starting Bot
+Setting Leverage for  PEOPLEUSDT  before Starting Bot
+Setting Leverage for  SPELLUSDT  before Starting Bot
+Setting Leverage for  IMXUSDT  before Starting Bot
+2022-02-08 01:24:12,920 : INFO : Config: use dict containing the following main keys: log
+2022-02-08 01:24:12,921 : DEBUG : COINBASE: reading symbol information from https://api.pro.coinbase.com/products
+2022-02-08 01:24:12,921 : DEBUG : HTTPSync: requesting data from https://api.pro.coinbase.com/products
+2022-02-08 01:24:13,015 : DEBUG : COINBASE.ws.1: connecting to wss://ws-feed.pro.coinbase.com
+/Users/neo1/PycharmProjects/cryptofeed/venv/lib/python3.8/site-packages/pandas/core/indexing.py:1773: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  self._setitem_single_column(ilocs[0], value, pi)
+Finished wave_manager in 7.56 second(s)
+Finished wave_manager in 7.81 second(s)
+Finished wave_manager in 8.11 second(s)
+Finished wave_manager in 7.55 second(s)
+Finished wave_manager in 7.7 second(s)
+Finished wave_manager in 7.62 second(s)
+Finished wave_manager in 7.94 second(s)
+Finished wave_manager in 8.08 second(s)
+Finished wave_manager in 8.29 second(s)
+Finished wave_manager in 8.04 second(s)
+Finished wave_manager in 8.25 second(s)
+Finished wave_manager in 7.69 second(s)
+Finished wave_manager in 7.83 second(s)
+Finished wave_manager in 8.12 second(s)
+Finished wave_manager in 7.89 second(s)
+Finished wave_manager in 7.82 second(s)
+Finished wave_manager in 7.83 second(s)
+Finished wave_manager in 7.37 second(s)
+Finished wave_manager in 7.83 second(s)
+Finished wave_manager in 7.34 second(s)
+Finished wave_manager in 7.64 second(s)
+Finished wave_manager in 7.67 second(s)
+Finished wave_manager in 7.81 second(s)
+Finished wave_manager in 8.67 second(s)
+Finished wave_manager in 7.92 second(s)
+Finished wave_manager in 7.82 second(s)
+Finished wave_manager in 7.97 second(s)
+Finished wave_manager in 7.91 second(s)
+Finished wave_manager in 7.77 second(s)
+Finished wave_manager in 7.5 second(s)
+Finished wave_manager in 7.77 second(s)
+Finished wave_manager in 7.6 second(s)
+Finished wave_manager in 7.66 second(s)
+Finished wave_manager in 8.68 second(s)
+Finished wave_manager in 8.3 second(s)
+Finished wave_manager in 7.33 second(s)
+Finished wave_manager in 7.84 second(s)
+Finished wave_manager in 7.69 second(s)
+Finished wave_manager in 7.68 second(s)
+Finished wave_manager in 7.47 second(s)
+Finished wave_manager in 7.97 second(s)
+Finished wave_manager in 7.8 second(s)
+Finished wave_manager in 7.28 second(s)
+Finished wave_manager in 7.93 second(s)
+Finished wave_manager in 7.92 second(s)
+Finished wave_manager in 7.51 second(s)
+Finished wave_manager in 7.34 second(s)
+Finished wave_manager in 7.61 second(s)
+Finished wave_manager in 7.84 second(s)
+Finished wave_manager in 9.24 second(s)
+Finished wave_manager in 8.38 second(s)
+Finished wave_manager in 7.95 second(s)
+Finished wave_manager in 7.94 second(s)
+Finished wave_manager in 7.49 second(s)
+Finished wave_manager in 7.68 second(s)
+Finished wave_manager in 7.73 second(s)
+Finished wave_manager in 7.85 second(s)
+Finished wave_manager in 7.63 second(s)
+Finished wave_manager in 7.59 second(s)
+Finished wave_manager in 8.19 second(s)
+Finished wave_manager in 7.89 second(s)
+Finished wave_manager in 7.69 second(s)
+Finished wave_manager in 7.85 second(s)
+Finished wave_manager in 8.59 second(s)
+KEEP-USDT-PERP trade active market order if mins < w4: get_status:20
+KEEPUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': 'ab32bc8a-4c3e-40b8-8ba7-9b3405a9f2ba', 'user_id': 17371411, 'symbol': 'KEEPUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 0.5703, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:32:44Z', 'updated_time': '2022-02-07T16:32:44Z', 'take_profit': 0.5494, 'stop_loss': 0.5338, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644251564.305174', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644251564298, 'rate_limit': 100}
+Finished wave_manager in 7.78 second(s)
+Finished wave_manager in 7.96 second(s)
+Finished wave_manager in 7.74 second(s)
+Finished wave_manager in 8.41 second(s)
+Finished wave_manager in 8.2 second(s)
+Finished wave_manager in 8.2 second(s)
+Finished wave_manager in 7.8 second(s)
+Finished wave_manager in 7.77 second(s)
+Finished wave_manager in 8.31 second(s)
+Finished wave_manager in 7.32 second(s)
+Finished wave_manager in 7.63 second(s)
+Finished wave_manager in 7.55 second(s)
+Finished wave_manager in 7.11 second(s)
+Finished wave_manager in 7.24 second(s)
+Finished wave_manager in 8.24 second(s)
+ETH-USDT-PERP trade condi_order if maxs <= high and mins >= w4 get_status:10
+ETHUSDT home trade condi_order :10
+rt_10:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'user_id': 17371411, 'stop_order_id': 'b55e86ed-677d-4a2a-b1c9-2e092ecfe54a', 'symbol': 'ETHUSDT', 'side': 'Buy', 'order_type': 'Limit', 'price': 3127.2, 'qty': 0.01, 'time_in_force': 'GoodTillCancel', 'order_status': 'Untriggered', 'trigger_price': 3138, 'order_link_id': '1644251665848', 'created_time': '2022-02-07T16:34:41Z', 'updated_time': '2022-02-07T16:34:41Z', 'base_price': '3127.20', 'trigger_by': 'LastPrice', 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'take_profit': 3138, 'stop_loss': 3118, 'reduce_only': False, 'close_on_trigger': False, 'position_idx': 1}, 'time_now': '1644251681.751230', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644251681744, 'rate_limit': 100}
+Finished wave_manager in 7.96 second(s)
+Finished wave_manager in 7.49 second(s)
+Finished wave_manager in 7.52 second(s)
+Finished wave_manager in 7.6 second(s)
+Finished wave_manager in 7.8 second(s)
+Finished wave_manager in 7.95 second(s)
+Finished wave_manager in 8.23 second(s)
+CRV-USDT-PERP trade active market order if mins < w4: get_status:20
+CRVUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': '91c0bc1e-39fc-4d68-ac92-a2623245455f', 'user_id': 17371411, 'symbol': 'CRVUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 3.772, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:35:36Z', 'updated_time': '2022-02-07T16:35:36Z', 'take_profit': 3.605, 'stop_loss': 3.569, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644251736.269359', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644251736263, 'rate_limit': 100}
+Finished wave_manager in 7.9 second(s)
+Finished wave_manager in 9.78 second(s)
+ICP-USDT-PERP trade condi_order if maxs <= high and mins >= w4 get_status:10
+FTM-USDT-PERP trade condi_order if maxs <= high and mins >= w4 get_status:10
+ICPUSDT home trade condi_order :10
+2022-02-08 01:35:55,237 : INFO : COINBASE.ws.1: closed connection 'WebSocketClientProtocol'
+2022-02-08 01:35:55,238 : ERROR : COINBASE.ws.1: encountered an exception, reconnecting in 1.0 seconds
+Traceback (most recent call last):
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/connection_handler.py", line 69, in _create_connection
+    await self._handler(connection, self.handler)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/connection_handler.py", line 119, in _handler
+    await handler(message, connection, self.conn.last_message)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/exchanges/coinbase.py", line 353, in message_handler
+    await self._book_update(msg, timestamp)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/exchanges/coinbase.py", line 163, in _book_update
+    await self.callback(TRADES, t, timestamp)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/feed.py", line 248, in callback
+    await cb(obj, receipt_timestamp)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/backends/aggregate.py", line 70, in __call__
+    await self.handler(self.data)
+  File "/Users/neo1/PycharmProjects/cryptofeed/runtrade.py", line 391, in ohlcv
+    rt = session.place_conditional_order(
+  File "/Users/neo1/PycharmProjects/cryptofeed/venv/lib/python3.8/site-packages/pybit/__init__.py", line 774, in place_conditional_order
+    return self._submit_request(
+  File "/Users/neo1/PycharmProjects/cryptofeed/venv/lib/python3.8/site-packages/pybit/__init__.py", line 1891, in _submit_request
+    raise InvalidRequestError(
+pybit.exceptions.InvalidRequestError: Expect rising, but trigger_price[2414] <= current[2419]??lastprice (ErrCode: 130074) (ErrTime: 16:35:54).
+Request → POST https://api.bybit.com/private/linear/stop-order/create: {'api_key': 'o2aZhUESAachytlOy5', 'base_price': 24.05, 'close_on_trigger': False, 'order_link_id': 1644251739437, 'order_type': 'Limit', 'price': 24.05, 'qty': 1, 'recv_window': 5000, 'reduce_only': False, 'side': 'Buy', 'stop_loss': 23.92, 'stop_px': 24.14, 'symbol': 'ICPUSDT', 'take_profit': 24.14, 'time_in_force': 'GoodTillCancel', 'timestamp': 1644251754053, 'trigger_by': 'LastPrice', 'sign': 'e2ca8f5b6f27e40624c913e25fb0de84425436f530598cfde6d79ac792cc772b'}.
+2022-02-08 01:35:56,246 : DEBUG : COINBASE.ws.1: connecting to wss://ws-feed.pro.coinbase.com
+Finished wave_manager in 8.62 second(s)
+Finished wave_manager in 8.09 second(s)
+Finished wave_manager in 8.09 second(s)
+Finished wave_manager in 8.0 second(s)
+Finished wave_manager in 8.41 second(s)
+Finished wave_manager in 7.94 second(s)
+Finished wave_manager in 7.71 second(s)
+Finished wave_manager in 7.93 second(s)
+Finished wave_manager in 8.34 second(s)
+Finished wave_manager in 8.12 second(s)
+Finished wave_manager in 8.12 second(s)
+Finished wave_manager in 8.14 second(s)
+Finished wave_manager in 8.61 second(s)
+Finished wave_manager in 8.33 second(s)
+Finished wave_manager in 7.99 second(s)
+DUSK-USDT-PERP trade active market order if mins < w4: get_status:20
+DUSKUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': 'e74ef1a5-b13c-499c-b13e-5fff3173613a', 'user_id': 17371411, 'symbol': 'DUSKUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 0.6151, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:38:07Z', 'updated_time': '2022-02-07T16:38:07Z', 'take_profit': 0.5978, 'stop_loss': 0.5698, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644251887.803752', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644251887764, 'rate_limit': 100}
+Finished wave_manager in 7.97 second(s)
+Finished wave_manager in 7.91 second(s)
+Finished wave_manager in 7.85 second(s)
+Finished wave_manager in 7.74 second(s)
+Finished wave_manager in 7.84 second(s)
+Finished wave_manager in 7.61 second(s)
+Finished wave_manager in 7.55 second(s)
+Finished wave_manager in 8.05 second(s)
+ETC-USDT-PERP trade active market order if mins < w4: get_status:20
+IOST-USDT-PERP trade active market order if mins < w4: get_status:20
+ILV-USDT-PERP trade active market order if mins < w4: get_status:20
+ETCUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': '8375ab49-f135-4f87-9602-611fe4b43cba', 'user_id': 17371411, 'symbol': 'ETCUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 34.355, 'qty': 1, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:39:11Z', 'updated_time': '2022-02-07T16:39:11Z', 'take_profit': 32.935, 'stop_loss': 32.61, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644251951.069328', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644251951063, 'rate_limit': 100}
+IOSTUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': 'e65b42e0-2df0-40e3-9cba-934256a0a990', 'user_id': 17371411, 'symbol': 'IOSTUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 0.03162, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:39:11Z', 'updated_time': '2022-02-07T16:39:11Z', 'take_profit': 0.0302, 'stop_loss': 0.03, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644251951.219365', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644251951214, 'rate_limit': 100}
+ILVUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': 'b915a3c9-de79-40e7-82e6-e5d20860c15e', 'user_id': 17371411, 'symbol': 'ILVUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 735.6, 'qty': 0.1, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:39:11Z', 'updated_time': '2022-02-07T16:39:11Z', 'take_profit': 704.9, 'stop_loss': 698.4, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644251951.340607', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644251951336, 'rate_limit': 100}
+Finished wave_manager in 8.99 second(s)
+XLM-USDT-PERP trade active market order if mins < w4: get_status:20
+XLMUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': 'b3746114-1607-46d9-b033-5dc9d2168ba4', 'user_id': 17371411, 'symbol': 'XLMUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 0.24745, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:39:20Z', 'updated_time': '2022-02-07T16:39:20Z', 'take_profit': 0.2373, 'stop_loss': 0.23475, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644251960.334341', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644251960329, 'rate_limit': 100}
+Finished wave_manager in 9.0 second(s)
+VET-USDT-PERP trade active market order if mins < w4: get_status:20
+VETUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': '1bb03e70-5d4b-42f2-95ab-fdef4dedf53c', 'user_id': 17371411, 'symbol': 'VETUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 0.0687, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:39:28Z', 'updated_time': '2022-02-07T16:39:28Z', 'take_profit': 0.06615, 'stop_loss': 0.0652, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644251968.480360', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644251968475, 'rate_limit': 100}
+Finished wave_manager in 8.15 second(s)
+Finished wave_manager in 7.72 second(s)
+Finished wave_manager in 8.19 second(s)
+Finished wave_manager in 7.67 second(s)
+Finished wave_manager in 8.17 second(s)
+DYDX-USDT-PERP trade active market order if mins < w4: get_status:20
+DYDXUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': '67d07672-915a-48d4-84cd-7bec3a6f4523', 'user_id': 17371411, 'symbol': 'DYDXUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 7.79, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:40:09Z', 'updated_time': '2022-02-07T16:40:09Z', 'take_profit': 7.48, 'stop_loss': 7.4, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644252009.528973', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644252009523, 'rate_limit': 100}
+Finished wave_manager in 9.3 second(s)
+SRM-USDT-PERP trade active market order if mins < w4: get_status:20
+OMG-USDT-PERP trade active market order if mins < w4: get_status:20
+SRMUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': '7a2a2708-0092-4589-a0da-1de434e9afb5', 'user_id': 17371411, 'symbol': 'SRMUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 2.831, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:40:17Z', 'updated_time': '2022-02-07T16:40:17Z', 'take_profit': 2.726, 'stop_loss': 2.695, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644252017.756195', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644252017751, 'rate_limit': 100}
+OMGUSDT home trade active_market_order :20
+2022-02-08 01:40:18,484 : INFO : COINBASE.ws.1: closed connection 'WebSocketClientProtocol'
+2022-02-08 01:40:18,489 : ERROR : COINBASE.ws.1: encountered an exception, reconnecting in 1.0 seconds
+Traceback (most recent call last):
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/connection_handler.py", line 69, in _create_connection
+    await self._handler(connection, self.handler)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/connection_handler.py", line 119, in _handler
+    await handler(message, connection, self.conn.last_message)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/exchanges/coinbase.py", line 353, in message_handler
+    await self._book_update(msg, timestamp)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/exchanges/coinbase.py", line 163, in _book_update
+    await self.callback(TRADES, t, timestamp)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/feed.py", line 248, in callback
+    await cb(obj, receipt_timestamp)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/backends/aggregate.py", line 70, in __call__
+    await self.handler(self.data)
+  File "/Users/neo1/PycharmProjects/cryptofeed/runtrade.py", line 415, in ohlcv
+    rt = session.place_active_order(
+  File "/Users/neo1/PycharmProjects/cryptofeed/venv/lib/python3.8/site-packages/pybit/__init__.py", line 488, in place_active_order
+    return self._submit_request(
+  File "/Users/neo1/PycharmProjects/cryptofeed/venv/lib/python3.8/site-packages/pybit/__init__.py", line 1891, in _submit_request
+    raise InvalidRequestError(
+pybit.exceptions.InvalidRequestError: Stoploss:5368 set for buy position should lower than  base_price:5367??lastprice (ErrCode: 130028) (ErrTime: 16:40:18).
+Request → POST https://api.bybit.com/private/linear/order/create: {'api_key': 'o2aZhUESAachytlOy5', 'close_on_trigger': False, 'order_type': 'Market', 'price': 5.392, 'qty': 10, 'recv_window': 5000, 'reduce_only': False, 'side': 'Buy', 'stop_loss': 5.368, 'symbol': 'OMGUSDT', 'take_profit': 5.416, 'time_in_force': 'GoodTillCancel', 'timestamp': 1644252017810, 'trigger_by': 'LastPrice', 'sign': '50f4faa95aea0ce18ec081d12932f3e545c7330c67e19fb09db490bcb12983e4'}.
+2022-02-08 01:40:19,497 : DEBUG : COINBASE.ws.1: connecting to wss://ws-feed.pro.coinbase.com
+Finished wave_manager in 7.76 second(s)
+Finished wave_manager in 7.55 second(s)
+Finished wave_manager in 7.81 second(s)
+Finished wave_manager in 8.03 second(s)
+Finished wave_manager in 7.96 second(s)
+BAT-USDT-PERP trade active market order if mins < w4: get_status:20
+STORJ-USDT-PERP trade active market order if mins < w4: get_status:20
+BATUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': 'e92246bf-18aa-409c-93cc-f2e5b3f5ad59', 'user_id': 17371411, 'symbol': 'BATUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 1.0195, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:41:06Z', 'updated_time': '2022-02-07T16:41:06Z', 'take_profit': 0.98, 'stop_loss': 0.968, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644252066.995565', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644252066989, 'rate_limit': 100}
+STORJUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': '5ac6f379-1ade-4bc0-bbc5-eafa80079fec', 'user_id': 17371411, 'symbol': 'STORJUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 1.4415, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:41:07Z', 'updated_time': '2022-02-07T16:41:07Z', 'take_profit': 1.378, 'stop_loss': 1.358, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644252067.110753', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644252067105, 'rate_limit': 100}
+Finished wave_manager in 7.37 second(s)
+DOT-USDT-PERP trade active market order if mins < w4: get_status:20
+DOTUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': 'eee3c046-8dce-4b76-875e-d5d5617344f6', 'user_id': 17371411, 'symbol': 'DOTUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 23.56, 'qty': 1, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:41:15Z', 'updated_time': '2022-02-07T16:41:15Z', 'take_profit': 22.55, 'stop_loss': 22.16, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644252075.618322', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644252075609, 'rate_limit': 100}
+Finished wave_manager in 8.51 second(s)
+YGG-USDT-PERP trade active market order if mins < w4: get_status:20
+YGGUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': '010fec78-2b13-42f1-8155-e7414be8f0e1', 'user_id': 17371411, 'symbol': 'YGGUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 4.193, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:41:23Z', 'updated_time': '2022-02-07T16:41:23Z', 'take_profit': 4.029, 'stop_loss': 3.967, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644252083.913364', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644252083907, 'rate_limit': 100}
+Finished wave_manager in 8.3 second(s)
+Finished wave_manager in 8.13 second(s)
+GTC-USDT-PERP trade active market order if mins < w4: get_status:20
+GTCUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': 'ce978de2-1023-4413-9bf6-ccdcb0739931', 'user_id': 17371411, 'symbol': 'GTCUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 9.66, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:41:40Z', 'updated_time': '2022-02-07T16:41:40Z', 'take_profit': 9.26, 'stop_loss': 9.12, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644252100.095745', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644252100085, 'rate_limit': 100}
+Finished wave_manager in 8.1 second(s)
+Finished wave_manager in 7.98 second(s)
+Finished wave_manager in 7.79 second(s)
+Finished wave_manager in 7.85 second(s)
+Finished wave_manager in 7.76 second(s)
+CELO-USDT-PERP trade active market order if mins < w4: get_status:20
+CELOUSDT home trade active_market_order :20
+rt_20:{'ret_code': 0, 'ret_msg': 'OK', 'ext_code': '', 'ext_info': '', 'result': {'order_id': '84097b49-794b-48ad-b3e2-53eaedacdde0', 'user_id': 17371411, 'symbol': 'CELOUSDT', 'side': 'Buy', 'order_type': 'Market', 'price': 3.67, 'qty': 10, 'time_in_force': 'ImmediateOrCancel', 'order_status': 'Created', 'last_exec_price': 0, 'cum_exec_qty': 0, 'cum_exec_value': 0, 'cum_exec_fee': 0, 'reduce_only': False, 'close_on_trigger': False, 'order_link_id': '', 'created_time': '2022-02-07T16:42:18Z', 'updated_time': '2022-02-07T16:42:18Z', 'take_profit': 3.533, 'stop_loss': 3.493, 'tp_trigger_by': 'LastPrice', 'sl_trigger_by': 'LastPrice', 'position_idx': 1}, 'time_now': '1644252138.900615', 'rate_limit_status': 99, 'rate_limit_reset_ms': 1644252138885, 'rate_limit': 100}
+Finished wave_manager in 7.35 second(s)
+Finished wave_manager in 7.74 second(s)
+Finished wave_manager in 7.61 second(s)
+Finished wave_manager in 7.17 second(s)
+Finished wave_manager in 7.04 second(s)
+Finished wave_manager in 7.95 second(s)
+Finished wave_manager in 8.1 second(s)
+Finished wave_manager in 7.36 second(s)
+Finished wave_manager in 8.04 second(s)
+Finished wave_manager in 7.98 second(s)
+Finished wave_manager in 9.03 second(s)
+Finished wave_manager in 8.16 second(s)
+Finished wave_manager in 7.96 second(s)
+Finished wave_manager in 7.72 second(s)
+CRO-USDT-PERP trade active market order if mins < w4: get_status:20
+CROUSDT home trade active_market_order :20
+2022-02-08 01:44:09,718 : INFO : COINBASE.ws.1: closed connection 'WebSocketClientProtocol'
+2022-02-08 01:44:09,722 : ERROR : COINBASE.ws.1: encountered an exception, reconnecting in 1.0 seconds
+Traceback (most recent call last):
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/connection_handler.py", line 69, in _create_connection
+    await self._handler(connection, self.handler)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/connection_handler.py", line 119, in _handler
+    await handler(message, connection, self.conn.last_message)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/exchanges/coinbase.py", line 353, in message_handler
+    await self._book_update(msg, timestamp)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/exchanges/coinbase.py", line 163, in _book_update
+    await self.callback(TRADES, t, timestamp)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/feed.py", line 248, in callback
+    await cb(obj, receipt_timestamp)
+  File "/Users/neo1/PycharmProjects/cryptofeed/cryptofeed/backends/aggregate.py", line 70, in __call__
+    await self.handler(self.data)
+  File "/Users/neo1/PycharmProjects/cryptofeed/runtrade.py", line 419, in ohlcv
+    qty=ordersize[0][symbolunit],
+KeyError: 'CRO'
+2022-02-08 01:44:10,726 : DEBUG : COINBASE.ws.1: connecting to wss://ws-feed.pro.coinbase.com
+Finished wave_manager in 8.26 second(s)
+Finished wave_manager in 7.88 second(s)
+Finished wave_manager in 7.88 second(s)
+Finished wave_manager in 8.39 second(s)
+Finished wave_manager in 7.71 second(s)
+Finished wave_manager in 7.98 second(s)
+Finished wave_manager in 8.18 second(s)
+Finished wave_manager in 7.73 second(s)
+Finished wave_manager in 7.53 second(s)
+Finished wave_manager in 7.83 second(s)
+Finished wave_manager in 7.86 second(s)
+Finished wave_manager in 7.66 second(s)
+Finished wave_manager in 7.55 second(s)
+Finished wave_manager in 7.94 second(s)
+Finished wave_manager in 7.63 second(s)
+Finished wave_manager in 7.85 second(s)
+Finished wave_manager in 7.81 second(s)
+Finished wave_manager in 8.08 second(s)
+Finished wave_manager in 7.79 second(s)
+Finished wave_manager in 7.83 second(s)
+Finished wave_manager in 7.58 second(s)
+Finished wave_manager in 8.15 second(s)
+Finished wave_manager in 7.86 second(s)
+Finished wave_manager in 8.08 second(s)
+Finished wave_manager in 7.4 second(s)
+Finished wave_manager in 7.58 second(s)
+Finished wave_manager in 7.59 second(s)
+Finished wave_manager in 7.36 second(s)
+Finished wave_manager in 7.34 second(s)
+Finished wave_manager in 7.88 second(s)
+Finished wave_manager in 7.61 second(s)
+Finished wave_manager in 8.28 second(s)
+Finished wave_manager in 8.04 second(s)
+Finished wave_manager in 7.46 second(s)
+Finished wave_manager in 7.42 second(s)
+Finished wave_manager in 7.3 second(s)
+Finished wave_manager in 8.47 second(s)
+Finished wave_manager in 8.31 second(s)
+Finished wave_manager in 7.79 second(s)
+Finished wave_manager in 7.47 second(s)
+Finished wave_manager in 7.57 second(s)
+Finished wave_manager in 7.52 second(s)
+Finished wave_manager in 7.59 second(s)
+Finished wave_manager in 7.17 second(s)
+Finished wave_manager in 7.29 second(s)
+Finished wave_manager in 7.43 second(s)
+Finished wave_manager in 7.94 second(s)
+Finished wave_manager in 7.2 second(s)
+Finished wave_manager in 7.65 second(s)
+Finished wave_manager in 7.5 second(s)
+Finished wave_manager in 7.92 second(s)
+Finished wave_manager in 7.58 second(s)
+Finished wave_manager in 7.58 second(s)
+Finished wave_manager in 7.29 second(s)
+Finished wave_manager in 7.49 second(s)
+Finished wave_manager in 7.77 second(s)
+Finished wave_manager in 7.64 second(s)
+Finished wave_manager in 7.9 second(s)
+Finished wave_manager in 8.1 second(s)
