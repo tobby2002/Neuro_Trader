@@ -1,0 +1,8 @@
+339.3182
+
+
+
+symbol='ATOM-USDT-PERP' and status >= 0
+
+
+Request → POST https://api.bybit.com/private/linear/order/create: {'api_key': 'o2aZhUESAachytlOy5', 'close_on_trigger': False, 'order_type': 'Market', 'price': 2.1335, 'qty': 10, 'recv_window': 5000, 'reduce_only': False, 'side': 'Buy', 'stop_loss': 2.106, 'symbol': 'ENJUSDT', 'take_profit': 2.148, 'time_in_force': 'GoodTillCancel', 'timestamp': 1644250479516, 'trigger_by': 'LastPrice', 'sign': 'f1982c64d16444943c5def5303406cfc18e3da4b201c72ee16bc2688781d8bff'}.
