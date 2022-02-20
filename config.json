@@ -1,16 +1,21 @@
 {
   "default": {
+    "_exchange": "bybit_usdt_perp, binance_futures",
+    "exchange": "BYBIT",
+    "exchange_symbol": "bybit_usdt_perp",
     "futures": true,
+    "_trade_type": "[long, short] or [long] or [short]",
+    "type": ["long","short"],
     "leverage": 1,
     "seed": 100,
 
-    "_fee": "0.01 --> 1%, 0.001 --> 0.1%, 0.0001 -> 0.01%   fee_taker:0.0004 시장가, fee_maker: 0.0002 지정가",
-    "fee": 0.0001,
-    "fee_maker": 0.0002,
-    "fee_taker": 0.0004,
-    "fee_slippage": 0.0001,
+    "_fee": "bybit_usdt_perp: -0.00025  0.0006    binance_futures: 0.0002    0.0004             0.01 --> 1%, 0.001 --> 0.1%, 0.0001 -> 0.01%   fee_taker:0.0004 시장가, fee_maker: 0.0002 지정가",
+    "fee": 0.0000,
+    "fee_maker": -0.00025,
+    "fee_taker": 0.0006,
+    "fee_slippage": 0.0000,
 
-    "_rule": ["4low", "1high", "14half"],
+    "_rule": ["4low", "1high", "14half", "3high"],
     "rule": "4low",
     "long": true,
     "high_target": 1.0,
@@ -18,24 +23,40 @@
     "low_target_w2": false,
 
     "_period": ["period_days_ago:30 --> 30 days ago", "period_days_ago_till:0 --> now", "period_interval:1 per 1day"],
-    "exchange": "BYBIT",
     "timeframe": 1,
-    "period_days_ago": 1,
+    "period_days_ago": 30,
     "period_days_ago_till": 0,
     "period_interval": 1,
     "window": 720,
+    "symbol_duplicated": true,
     "symbol_random": true,
-    "symbol_length": -1,
+    "symbol_last":-10,
+    "symbol_length":10,
     "round_trip_flg": false,
     "round_trip_count": 1,
     "compounding": true,
 
-    "up_to_count": 1,
-    "h_fibo_rate": [0, 11.8, 23.6, 38.2, 50, 61.8, 76.4, 88.2, -0.75],
-    "h_fibo": 0,
-    "l_fibo": 0,
+    "_fractal_count": ["5: default, 7, 9 , 11"],
+    "fcnt": [31, 51, 71],
+    "loop_count": 1,
+    "up_to_count": 3,
+    "condi_same_date": true,
+
+    "h_fibo_rate": [0, 11.8, 23.6, 38.2, 50, 61.8, 76.4, 88.2, 100, -0.75],
+    "o_fibo": 100.0,
+    "h_fibo": 100.0,
+    "l_fibo": 100.0,
+
+    "profit_long": 0.02,
+    "profit_short": 0.02,
+    "stop_long": 0.005,
+    "stop_short": 0.005,
+
+    "intersect_idx": true,
     "plotview": false,
-    "printout": false
+    "printout": false,
+    "multi_process": true,
+    "symbols_except": ["KEEPUSDT"]
   },
   "symbols": {
     "binance_futures": [
