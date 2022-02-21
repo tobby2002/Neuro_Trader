@@ -2,7 +2,7 @@
   "default": {
     "_exchange": "bybit_usdt_perp, binance_futures",
     "exchange": "BYBIT",
-    "exchange_symbol": "bybit_usdt_perp",
+    "exchange_symbol": "binance_futures",
     "futures": true,
     "_trade_type": "[long, short] or [long] or [short]",
     "type": ["long","short"],
@@ -23,8 +23,8 @@
     "low_target_w2": false,
 
     "_period": ["period_days_ago:30 --> 30 days ago", "period_days_ago_till:0 --> now", "period_interval:1 per 1day"],
-    "timeframe": 1,
-    "period_days_ago": 30,
+    "timeframe": 5,
+    "period_days_ago": 100,
     "period_days_ago_till": 0,
     "period_interval": 1,
     "window": 720,
